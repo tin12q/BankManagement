@@ -15,7 +15,7 @@
             <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="300.0" stylesheets="@css/round.css" />
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="200.0" stylesheets="@css/round.css">
                <children>
-                  <MFXTextField fx:id="usr" floatMode="BORDER" prefHeight="40.0" prefWidth="160.0" promptText="Username" style="-fx-background-color: #8EBBFF;" />
+                  <MFXTextField fx:id="usr" floatMode="BORDER" prefHeight="40.0" prefWidth="160.0" promptText="Username" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="55.0" prefWidth="200.0" stylesheets="@css/round.css">
