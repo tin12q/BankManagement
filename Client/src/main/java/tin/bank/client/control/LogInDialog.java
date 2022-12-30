@@ -1,6 +1,8 @@
 package tin.bank.client.control;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,14 +23,14 @@ public class LogInDialog {
     private MFXButton logInBtn;
 
     @FXML
-    private PasswordField pwd;
+    private MFXPasswordField pwd;
 
     @FXML
-    private TextField usr;
+    private MFXTextField usr;
     //Login button clicked
     @FXML
-    private void onLogInButtonClick() {
-        System.out.println("Log in button clicked!");
+    private void initialize() {
+        System.out.println("initialize");
         logInBtn.setOnAction(event -> loadPage("MainView",event));
     }
 

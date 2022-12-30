@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #24293E;" stylesheets="@css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.LogInDialog">
    <children>
@@ -14,17 +15,20 @@
             <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="300.0" stylesheets="@css/round.css" />
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="200.0" stylesheets="@css/round.css">
                <children>
-                  <TextField fx:id="usr" prefHeight="40.0" promptText="Username" stylesheets="@css/round.css" />
+                  <MFXTextField fx:id="usr" floatMode="BORDER" prefHeight="40.0" prefWidth="160.0" promptText="Username" style="-fx-background-color: #8EBBFF;" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="55.0" prefWidth="200.0" stylesheets="@css/round.css">
                <children>
-                  <PasswordField fx:id="pwd" prefHeight="40.0" promptText="Password" stylesheets="@css/round.css" />
+                  <MFXPasswordField fx:id="pwd" floatMode="BORDER" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/round.css">
                <children>
-                  <MFXButton fx:id="logInBtn" buttonType="RAISED" depthLevel="LEVEL5" text="Login" />
+                  <MFXButton fx:id="logInBtn" buttonType="RAISED" depthLevel="LEVEL5" text="Login">
+                     <font>
+                        <Font size="15.0" />
+                     </font></MFXButton>
                </children>
             </HBox>
          </children>

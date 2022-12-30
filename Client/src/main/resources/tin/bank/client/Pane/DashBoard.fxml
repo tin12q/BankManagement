@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tin.bank.client.control.pane.DashBoard"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.pane.DashBoard">
+   <children>
+      <VBox alignment="CENTER" layoutX="238.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" spacing="50.0">
+               <children>
+                  <StackPane alignment="BOTTOM_CENTER">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <children>
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Total">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </StackPane>
+                  <StackPane alignment="BOTTOM_CENTER" layoutX="40.0" layoutY="10.0">
+                     <children>
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="History">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </StackPane>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="140.0" spacing="50.0">
+               <children>
+                  <StackPane alignment="BOTTOM_CENTER">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <children>
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Loan">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </StackPane>
+                  <StackPane alignment="BOTTOM_CENTER" layoutX="40.0" layoutY="10.0">
+                     <children>
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Transfer">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </StackPane>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

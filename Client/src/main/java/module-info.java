@@ -9,4 +9,6 @@ module tin.bank.client {
     exports tin.bank.client;
     opens tin.bank.client.control to javafx.fxml;
     exports tin.bank.client.control;
+    opens tin.bank.client.control.pane to javafx.fxml;
+    exports tin.bank.client.control.pane;
 }

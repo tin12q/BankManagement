@@ -1,0 +1,49 @@
+
+.label {
+    /*-fx-background-color: #2F3954;*/
+    -fx-background-radius: 5;
+
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-text-fill: #F4F5FC;
+}
+.mfx-text-field {
+    -fx-background-color: #8EBBFF;
+    -fx-background-radius: 5;
+    -fx-border-color: #8EBBFF;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-text-fill: #24293E;
+
+}
+.mfx-text-field:hover {
+    -fx-background-color: #8EBBFF;
+    -fx-background-radius: 5;
+    -fx-border-color: #8EBBFF;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-text-fill: #24293E;
+}
+.v-box {
+    -fx-background-color: #2F3954;
+
+}
+
+.mfx-button{
+    -fx-background-color: #2F3954;
+    -fx-background-radius: 20;
+    -fx-border-radius: 5;
+
+    -fx-text-fill: #F4F5FC;
+}
+.mfx-textfield:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+/*  BG #24293E
+    Ac #8EBBFF
+    Te #F4F5FC
+    Se #2F3954
+
+ */

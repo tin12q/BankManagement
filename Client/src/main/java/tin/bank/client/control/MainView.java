@@ -17,7 +17,7 @@ public class MainView {
     @FXML
     private MFXButton dBBtn;
     @FXML
-    private void actionHandle()
+    private void initialize()
     {
         dBBtn.setOnAction(event -> loadPage("DashBoard",event));
     }
@@ -30,7 +30,7 @@ public class MainView {
                 return;
             }
             else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/httt/server/Server/SerWinPane/" +name + ".fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/pane/" +name + ".fxml"));
 
                 AnchorPane newPane = loader.load();
 
