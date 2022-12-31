@@ -4,6 +4,7 @@ module tin.bank.client {
 
     requires org.kordamp.bootstrapfx.core;
     requires MaterialFX;
+    requires java.sql;
 
     opens tin.bank.client to javafx.fxml;
     exports tin.bank.client;
