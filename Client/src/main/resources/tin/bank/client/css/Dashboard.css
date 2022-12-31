@@ -38,6 +38,7 @@
 
     -fx-text-fill: #F4F5FC;
 }
+
 .mfx-textfield:focused {
     -fx-background-color: -fx-focus-color, -fx-background ;
 }
