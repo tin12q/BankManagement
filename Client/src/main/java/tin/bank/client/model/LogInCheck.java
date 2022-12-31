@@ -24,4 +24,10 @@ public class LogInCheck {
     public void setPassword(String password) {
         this.password = password;
     }
+    public boolean check(){
+        if (DataGet.passCheck(id,password)){
+            return true;
+        }
+        else return false;
+    }
 }
