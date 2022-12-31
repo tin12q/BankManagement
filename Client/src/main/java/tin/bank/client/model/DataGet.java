@@ -36,14 +36,13 @@ public class DataGet {
             //statement
             Statement st = con.createStatement();
             //result
-            ResultSet rs = st.executeQuery("select * from login");
-            while(rs.next()){
-                System.out.println(id+" "+rs.getString(2)+" "+rs.getString(3)+' '+ password);
-                if (rs.getString(2).equals(id) && rs.getString(3).equals(password)){
-                    return true;
-                }
+            ResultSet rs = st.executeQuery("select * from login where username = '"+id+"' and password = '"+password+"'");
+            if( rs.next()){
+                return true;
             }
-            return false;
+            else return false;
+
+
 
         }catch (ClassNotFoundException e){
 
