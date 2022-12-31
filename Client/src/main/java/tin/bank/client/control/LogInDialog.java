@@ -12,11 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tin.bank.client.model.LogInCheck;
 
 import java.io.IOException;
 
 public class LogInDialog {
-
+    private LogInCheck logInCheck;
     private String pwdStr;
     private String usrStr;
     @FXML
@@ -31,25 +32,29 @@ public class LogInDialog {
     @FXML
     private void initialize() {
         System.out.println("initialize");
+
         logInBtn.setOnAction(event -> loadPage("MainView",event));
     }
 
     private void loadPage(String page, ActionEvent event)  {
         try {
-            pwdStr = pwd.toString();
-            usrStr = usr.toString();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/tin/bank/client/"+page+".fxml"));
-            Parent content = loader.load();
+            logInCheck = new LogInCheck(usr.getText() ,pwd.getText());
+            if(logInCheck.check()){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/tin/bank/client/"+page+".fxml"));
+                Parent content = loader.load();
 
-            Scene scene = new Scene(content);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(content);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setScene(scene);
-            stage.setX(0);
-            stage.setY(0);
-            stage.setTitle("Client");
-            stage.show();
+                stage.setScene(scene);
+                stage.setX(0);
+                stage.setY(0);
+                stage.setTitle("Client");
+                stage.show();
+            }
+
+
         }
         catch (IOException e) {
             throw new RuntimeException(e);
