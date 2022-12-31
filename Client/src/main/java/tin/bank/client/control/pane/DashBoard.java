@@ -1,4 +1,4 @@
-package tin.bank.client.control.pane;
+package tin.bank.client.control.Pane;
 
 public class DashBoard {
 }
