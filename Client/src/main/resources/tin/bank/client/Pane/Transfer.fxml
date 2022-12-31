@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/Dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.Transfer">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="457.0" layoutY="49.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Region prefHeight="145.0" prefWidth="1300.0" />
+            <HBox alignment="CENTER_LEFT" spacing="30.0">
+               <children>
+                  <StackPane alignment="BOTTOM_CENTER">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <children>
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Total">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </StackPane>
+                  <StackPane alignment="BOTTOM_CENTER" layoutX="40.0" layoutY="10.0" />
+                  <MFXTextField floatMode="BORDER" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXComboBox floatMode="BORDER" prefHeight="60.0" prefWidth="250.0" />
+                  <MFXButton prefHeight="118.0" prefWidth="197.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox layoutX="10.0" layoutY="410.0" prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
