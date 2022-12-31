@@ -7,11 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tin.bank.client.model.Account;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainView {
-
+    private Account mainAccount;
+    private Account[] accounts;
+    @FXML
+    private Label nameLb;
     @FXML
     private AnchorPane ac1;
     @FXML
@@ -19,6 +24,7 @@ public class MainView {
     @FXML
     private void initialize()
     {
+        System.out.println("initialized");
         dBBtn.setOnAction(event -> loadPage("DashBoard",event));
     }
     private void loadPage(String name, ActionEvent event) {
