@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tin.bank.client.model.LogInCheck;
 
@@ -20,6 +23,8 @@ public class LogInDialog {
     private LogInCheck logInCheck;
     private String pwdStr;
     private String usrStr;
+    @FXML
+    private AnchorPane ac;
     @FXML
     private MFXButton logInBtn;
 
@@ -32,7 +37,11 @@ public class LogInDialog {
     @FXML
     private void initialize() {
         System.out.println("initialize");
-
+        ac.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                enterLoadPage("MainView", event );
+            }
+        });
         logInBtn.setOnAction(event -> loadPage("MainView",event));
     }
 
@@ -53,7 +62,35 @@ public class LogInDialog {
                 stage.setTitle("Client");
                 stage.show();
             }
+            else {
+                System.out.println("Wrong password or username");
+            }
 
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void enterLoadPage(String page, KeyEvent event)  {
+        try {
+            logInCheck = new LogInCheck(usr.getText() ,pwd.getText());
+            if(logInCheck.check()){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/tin/bank/client/"+page+".fxml"));
+                Parent content = loader.load();
+
+                Scene scene = new Scene(content);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.setScene(scene);
+                stage.setX(0);
+                stage.setY(0);
+                stage.setTitle("Client");
+                stage.show();
+            }
+            else {
+                System.out.println("Wrong password or username");
+            }
 
         }
         catch (IOException e) {
