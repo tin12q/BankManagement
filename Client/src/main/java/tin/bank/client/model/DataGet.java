@@ -41,9 +41,15 @@ public class DataGet {
             Statement st = con.createStatement();
             //result
             ResultSet rs = st.executeQuery("select * from login where username = '"+id+"' and password = '"+password+"'");
-            String thisId = rs.getString("id");
+            
+            
+           
+            
             if( rs.next()){
+                String thisId = rs.getString("id");
+                //System.out.println(rs.getString("id"));
                 ResultSet rs2 = st.executeQuery("select * from account where id = '"+thisId+"'");
+                rs2.next();
                 mainAccount = new Account(rs2.getString("id"),rs2.getString("name"),rs2.getDouble("balance"));
                 return true;
             }
