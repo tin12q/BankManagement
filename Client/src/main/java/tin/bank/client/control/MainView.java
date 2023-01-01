@@ -91,5 +91,10 @@ public class MainView {
             throw new RuntimeException(e);
         }
     }
-
+    // TODO: Jan 02 2023
+    // 1. Add Dashboard pane DONE
+    // 2. Add Transfer pane In progress
+    // 3. Add Deposit pane In progress
+    // 4. Add Withdraw pane not started
+    // 5. Add History pane not started
 }

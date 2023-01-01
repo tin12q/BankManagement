@@ -62,9 +62,9 @@ public class DataGet {
         }
         return false;
     }
-    // TODO: 2023-01-01
+    // TODO: Jan 01 2023
     // 1. Add a method to get all the accounts DONE
-    // 2. Add a method to get all the transactions In progress
+    // 2. Add a method to get all the transactions In progress 
     // 3. Add a method to get all the users DONE
     // 4. Output the result to UI DONE
 

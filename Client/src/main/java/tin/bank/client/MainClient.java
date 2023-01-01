@@ -16,11 +16,11 @@ public class MainClient extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    // TODO: 2023-01-01
+    // TODO: Jan 01 2023
     // 1. Add a method to check if the user is logged in DONE
     // 2. Add a method to log in DONE
-    // 3. Add a method to log out In progress
-    // 4. Add a method to register Not started
+    // 3. Add a method to log out DONE
+    // 4. Add a method to register In progress
     // 5. Add a method to change password Not started
 
     public static void main(String[] args) {
