@@ -9,6 +9,7 @@ public class DataGet {
     private static String pss = "Abcd1234!";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static LinkedList<Account> accounts = new LinkedList<>();
+    public static Account mainAccount;
     private void init(){
         try{
             //sql server driver
@@ -29,6 +30,7 @@ public class DataGet {
             e.printStackTrace();
         }
     }
+    //password check
     public static boolean passCheck(String id, String password){
         try{
             //sql server driver
@@ -39,7 +41,10 @@ public class DataGet {
             Statement st = con.createStatement();
             //result
             ResultSet rs = st.executeQuery("select * from login where username = '"+id+"' and password = '"+password+"'");
+            String thisId = rs.getString("id");
             if( rs.next()){
+                ResultSet rs2 = st.executeQuery("select * from account where id = '"+thisId+"'");
+                mainAccount = new Account(rs2.getString("id"),rs2.getString("name"),rs2.getDouble("balance"));
                 return true;
             }
             else return false;
@@ -75,12 +80,13 @@ public class DataGet {
             Connection con = DriverManager.getConnection(url,usr,pss);
             //statement
             Statement st = con.createStatement();
-            //result
+            //result without main account
             
-            ResultSet rs = st.executeQuery("select * from account");
+            ResultSet rs = st.executeQuery("select * from account where id != '"+mainAccount.getId()+"'");
             
 
             while(rs.next()){
+                //add to list
                 Account account = new Account(rs.getString("id"),rs.getString("name"),rs.getDouble("balance"));
                 addAccount(account);
             }

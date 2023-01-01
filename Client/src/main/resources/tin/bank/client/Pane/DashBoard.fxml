@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.DashBoard">
    <children>
       <VBox alignment="CENTER" layoutX="238.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -20,7 +19,7 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                      <children>
-                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Total">
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Balance">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -28,7 +27,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="balanceBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>

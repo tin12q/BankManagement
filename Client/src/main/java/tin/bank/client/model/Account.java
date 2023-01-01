@@ -3,24 +3,26 @@ package tin.bank.client.model;
 public class Account {
     private String id;
     private String name;
-    private int balance;
+    private Double balance;
     private boolean isBlocked;
 
-    public Account(String id, String name, int balance) {
+    public Account(String id, String name, Double balance) {
         this.id = id;
         this.name = name;
         this.balance = balance;
     }
-
-    public int getBalance() {
+    public String getId() {
+        return id;
+    }
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
-    public int credit(int Amount) {
+    public Double credit(int Amount) {
         this.balance += Amount;
         return this.balance;
     }
