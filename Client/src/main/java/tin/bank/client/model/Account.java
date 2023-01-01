@@ -57,4 +57,7 @@ public class Account {
     public String toString() {
         return "Account is " + this.id + " name " + this.name + " balance " + this.balance;
     }
+    public String getName() {
+        return name;
+    }
 }
