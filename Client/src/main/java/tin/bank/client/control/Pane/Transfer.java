@@ -13,10 +13,10 @@ import tin.bank.client.model.DataGet;
 public class Transfer {
     // TODO: Jan 02 2023
     // IMPORTANT: CHECK CHATGPT INSTRUCTIONS
-    // 1. Add a method to transfer money to another account
-    // 2. Add button to transfer money
-    // 3. Add combobox to select and find account
-    // 4. Add textfield to enter amount
+    // 1. Add a method to transfer money to another account DONE
+    // 2. Add button to transfer money DONE
+    // 3. Add combobox to select and find account DONE
+    // 4. Add textfield to enter amount DONE
     // go go
     private LinkedList<Account> accounts = DataGet.accounts;
     @FXML
@@ -40,8 +40,9 @@ public class Transfer {
         //accountBox.getItems().addAll(accounts);
         okBtn.setOnAction(this::handleTransfer);
     }
-
+    //FIXME: Later or I will improve server structure then improve this method
     //@FXML
+    //NOTE: I will improve this method later
     private void handleTransfer(ActionEvent event) {
         // Get the selected account from the ComboBox
         Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();

@@ -5,10 +5,10 @@ import java.util.LinkedList;
 
 public class DataGet {
     // mssql connection
-    private static String url = "jdbc:sqlserver://localhost:57000;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
-    private static String usr = "sa";
-    private static String pss = "Abcd1234!";
-    private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private final static String url = "jdbc:sqlserver://localhost:57000;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
+    private static final String usr = "sa";
+    private static final String pss = "Abcd1234!";
+    private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
     public static Account mainAccount;
     /*  init method
@@ -32,6 +32,8 @@ public class DataGet {
         }
     }
     */
+    //FIXME: Why this shit in here?
+    // Need to improve this method by compare the id with the id in the database within sql query
     // password check
     public static boolean passCheck(String id, String password) {
         try {
@@ -55,7 +57,7 @@ public class DataGet {
             } else
                 return false;
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ignored) {
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +97,7 @@ public class DataGet {
                 addAccount(account);
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ignored) {
 
         } catch (Exception e) {
             e.printStackTrace();
