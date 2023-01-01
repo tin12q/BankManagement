@@ -1,12 +1,62 @@
 package tin.bank.client.control.Pane;
 
+import java.util.LinkedList;
+
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import tin.bank.client.model.Account;
+import tin.bank.client.model.DataGet;
+
 public class Transfer {
     // TODO: Jan 02 2023
     // IMPORTANT: CHECK CHATGPT INSTRUCTIONS
     // 1. Add a method to transfer money to another account
     // 2. Add button to transfer money
-    // 3. Add combobox to select and find account 
+    // 3. Add combobox to select and find account
     // 4. Add textfield to enter amount
     // go go
+    private LinkedList<Account> accounts = DataGet.accounts;
+    @FXML
+    private MFXComboBox<Account> accountBox;
 
+    @FXML
+    private MFXTextField amountTextfield;
+
+    @FXML
+    private MFXButton currentBtn;
+
+    @FXML
+    private MFXButton okBtn;
+
+    @FXML
+    private void initialize() {
+        // Set the current account balance
+        currentBtn.setText(DataGet.mainAccount.getBalance().toString());
+        // Add all accounts name to the ComboBox
+        accountBox.getItems().addAll(accounts);
+        //accountBox.getItems().addAll(accounts);
+        okBtn.setOnAction(this::handleTransfer);
+    }
+
+    //@FXML
+    private void handleTransfer(ActionEvent event) {
+        // Get the selected account from the ComboBox
+        Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
+        //String recipientAccountNumber = selectedAccount.getId();
+
+        // Continue with the rest of the transfer process...
+        // Get the amount from the textfield
+        int amount = Integer.parseInt(amountTextfield.getText());
+        
+        if(DataGet.mainAccount.transferTo(selectedAccount, amount)) {
+
+            // Transfer failed
+            // Show an error message
+            amountTextfield.setText("Transfer failed");
+        }
+        currentBtn.setText(DataGet.mainAccount.getBalance().toString());
+    }
 }

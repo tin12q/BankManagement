@@ -9,7 +9,7 @@ public class DataGet {
     private static String usr = "sa";
     private static String pss = "Abcd1234!";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static LinkedList<Account> accounts = new LinkedList<>();
+    public static LinkedList<Account> accounts = new LinkedList<>();
     public static Account mainAccount;
     /*  init method
     private void init() {

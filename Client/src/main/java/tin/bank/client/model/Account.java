@@ -11,9 +11,11 @@ public class Account {
         this.name = name;
         this.balance = balance;
     }
+
     public String getId() {
         return id;
     }
+
     public Double getBalance() {
         return balance;
     }
@@ -41,22 +43,26 @@ public class Account {
     }
 
     public boolean transferTo(Account a, int Amount) {
+        System.out.println(DataGet.mainAccount.getBalance()+" "+a.getBalance()+" Amount "+Amount);
         if (Amount <= balance) {
             a.balance += Amount;
             this.balance -= Amount;
             isBlocked = false;
+            return this.isBlocked;
         } else {
             isBlocked = true;
             System.out.println("Amount exceeded balance");
-
+            return this.isBlocked;
         }
-        return this.isBlocked;
+        
 
     }
 
     public String toString() {
-        return "Account is " + this.id + " name " + this.name + " balance " + this.balance;
+        //return "Account is " + this.id + " name " + this.name + " balance " + this.balance;
+        return this.name;
     }
+
     public String getName() {
         return name;
     }

@@ -24,6 +24,8 @@ public class MainView {
     private MFXButton dBBtn;
     @FXML
     private MFXButton logOutBtn;
+    @FXML
+    private MFXButton transferButton;
 
     @FXML
     private void initialize() {
@@ -38,6 +40,7 @@ public class MainView {
             DataGet.resetList();
             loadPage("LogInDialog", event);
         });
+        transferButton.setOnAction(event -> loadPane("Transfer", event));
 
     }
     // method to load the pane
