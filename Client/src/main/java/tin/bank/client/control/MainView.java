@@ -8,13 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tin.bank.client.model.Account;
+import tin.bank.client.model.DataGet;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class MainView {
-    private Account mainAccount;
-    private Account[] accounts;
+    
     @FXML
     private Label nameLb;
     @FXML
@@ -25,7 +25,10 @@ public class MainView {
     private void initialize()
     {
         System.out.println("initialized");
+        //get the account from the log in dialog
+        DataGet.getUsers();
         dBBtn.setOnAction(event -> loadPage("DashBoard",event));
+
     }
     private void loadPage(String name, ActionEvent event) {
 
