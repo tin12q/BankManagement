@@ -9,8 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +20,6 @@ import java.io.IOException;
 
 public class LogInDialog {
     private LogInCheck logInCheck;
-    private String pwdStr;
     private String usrStr;
     @FXML
     private AnchorPane ac;
