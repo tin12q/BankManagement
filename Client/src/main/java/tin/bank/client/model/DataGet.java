@@ -11,29 +11,33 @@ public class DataGet {
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
     public static Account mainAccount;
-    /*  init method
-    private void init() {
-        try {
-            // sql server driver
-            Class.forName(driver);
-            // connection
-            Connection con = DriverManager.getConnection(url, usr, pss);
-            // statement
-            Statement st = con.createStatement();
-            // result
-            ResultSet rs = st.executeQuery("select * from login");
-            while (rs.next()) {
-                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3));
-            }
-        } catch (ClassNotFoundException e) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    */
-    //FIXME: Why this shit in here?
-    // Need to improve this method by compare the id with the id in the database within sql query
+    /*
+     * init method
+     * private void init() {
+     * try {
+     * // sql server driver
+     * Class.forName(driver);
+     * // connection
+     * Connection con = DriverManager.getConnection(url, usr, pss);
+     * // statement
+     * Statement st = con.createStatement();
+     * // result
+     * ResultSet rs = st.executeQuery("select * from login");
+     * while (rs.next()) {
+     * System.out.println(rs.getString(1) + " " + rs.getString(2) + " " +
+     * rs.getString(3));
+     * }
+     * } catch (ClassNotFoundException e) {
+     * 
+     * } catch (Exception e) {
+     * e.printStackTrace();
+     * }
+     * }
+     */
+    // FIXME: Why this shit in here?
+    // Need to improve this method by compare the id with the id in the database
+    // within sql query
     // password check
     public static boolean passCheck(String id, String password) {
         try {
@@ -66,7 +70,7 @@ public class DataGet {
     }
     // TODO: Jan 01 2023
     // 1. Add a method to get all the accounts DONE
-    // 2. Add a method to get all the transactions In progress 
+    // 2. Add a method to get all the transactions In progress
     // 3. Add a method to get all the users DONE
     // 4. Output the result to UI DONE
 
@@ -87,9 +91,13 @@ public class DataGet {
             Connection con = DriverManager.getConnection(url, usr, pss);
             // statement
             Statement st = con.createStatement();
+            ResultSet rs;
             // result without main account
-
-            ResultSet rs = st.executeQuery("select * from account where id != '" + mainAccount.getId() + "'");
+            if (mainAccount == null) {
+                rs = st.executeQuery("select * from account");
+            } else {
+                rs = st.executeQuery("select * from account where id != '" + mainAccount.getId() + "'");
+            }
 
             while (rs.next()) {
                 // add to list
@@ -103,9 +111,40 @@ public class DataGet {
             e.printStackTrace();
         }
     }
+
+    public static void getUsersWithID() {
+        try {
+            // sql server driver
+            Class.forName(driver);
+            // connection
+            Connection con = DriverManager.getConnection(url, usr, pss);
+            // statement
+            Statement st = con.createStatement();
+            ResultSet rs;
+            // result without main account
+            // TODO: Use another method to get the id CHECk
+            rs = st.executeQuery("select username from login l inner join account a on l.account_id = a.id");
+
+            while (rs.next()) {
+                // add to list
+                Account account = new Account(rs.getString("username"));
+                addAccount(account);
+            }
+
+        } catch (ClassNotFoundException ignored) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Method to reset the list
     public static void resetList() {
         accounts.clear();
+    }
+
+    public static int getNumberOfAccounts() {
+        return accounts.size();
     }
 
 }

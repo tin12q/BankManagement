@@ -31,24 +31,50 @@ public class LogInDialog {
 
     @FXML
     private MFXTextField usr;
-    //Login button clicked
+    @FXML
+    private MFXButton registerBtn;
+
+    // Login button clicked
     @FXML
     private void initialize() {
         System.out.println("initialize");
         ac.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                enterLoadPage("MainView", event );
+                enterLoadPage("MainView", event);
             }
         });
-        logInBtn.setOnAction(event -> loadPage("MainView",event));
+        logInBtn.setOnAction(event -> loadPage("MainView", event));
+        registerBtn.setOnAction(event -> registerPage("Register", event));
     }
 
-    private void loadPage(String page, ActionEvent event)  {
+    private void registerPage(String page, ActionEvent event) {
         try {
-            logInCheck = new LogInCheck(usr.getText() ,pwd.getText());
-            if(logInCheck.check()){
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
+            Parent content = loader.load();
+
+            Scene scene = new Scene(content);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setX(300);
+            stage.setY(200);
+            stage.setTitle("Client");
+            stage.show();
+        }
+
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadPage(String page, ActionEvent event) {
+        try {
+            logInCheck = new LogInCheck(usr.getText(), pwd.getText());
+            if (logInCheck.check()) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/tin/bank/client/"+page+".fxml"));
+                loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();
 
                 Scene scene = new Scene(content);
@@ -59,22 +85,21 @@ public class LogInDialog {
                 stage.setY(0);
                 stage.setTitle("Client");
                 stage.show();
-            }
-            else {
+            } else {
                 System.out.println("Wrong password or username");
             }
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    private void enterLoadPage(String page, KeyEvent event)  {
+
+    private void enterLoadPage(String page, KeyEvent event) {
         try {
-            logInCheck = new LogInCheck(usr.getText() ,pwd.getText());
-            if(logInCheck.check()){
+            logInCheck = new LogInCheck(usr.getText(), pwd.getText());
+            if (logInCheck.check()) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/tin/bank/client/"+page+".fxml"));
+                loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();
 
                 Scene scene = new Scene(content);
@@ -85,17 +110,14 @@ public class LogInDialog {
                 stage.setY(0);
                 stage.setTitle("Client");
                 stage.show();
-            }
-            else {
+            } else {
                 System.out.println("Wrong password or username");
             }
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
 
     public String getUsrStr() {
         return usrStr;
