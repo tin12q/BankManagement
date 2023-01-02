@@ -7,9 +7,9 @@ import tin.bank.client.model.DataGet;
 public class DashBoard {
     @FXML
     private MFXButton balanceBtn;
+
     @FXML
-    private void initialize()
-    {
-       balanceBtn.setText(DataGet.mainAccount.getBalance().toString());
+    private void initialize() {
+        balanceBtn.setText(DataGet.mainAccount.getBalance().toString());
     }
 }

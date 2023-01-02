@@ -37,22 +37,21 @@ public class Transfer {
         currentBtn.setText(DataGet.mainAccount.getBalance().toString());
         // Add all accounts name to the ComboBox
         accountBox.getItems().addAll(accounts);
-        //accountBox.getItems().addAll(accounts);
         okBtn.setOnAction(this::handleTransfer);
     }
-    //FIXME: Later or I will improve server structure then improve this method
-    //@FXML
-    //NOTE: I will improve this method later
+
+    // FIXME: Later or improve server structure then improve this method
+    // @FXML
+    // NOTE: I will improve this method later
     private void handleTransfer(ActionEvent event) {
         // Get the selected account from the ComboBox
         Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
-        //String recipientAccountNumber = selectedAccount.getId();
 
         // Continue with the rest of the transfer process...
         // Get the amount from the textfield
         int amount = Integer.parseInt(amountTextfield.getText());
-        
-        if(DataGet.mainAccount.transferTo(selectedAccount, amount)) {
+
+        if (DataGet.mainAccount.transferTo(selectedAccount, amount)) {
 
             // Transfer failed
             // Show an error message
