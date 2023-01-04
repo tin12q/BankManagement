@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import tin.bank.client.model.DataGet;
+import tin.bank.client.model.DataHandle;
 
 import java.io.IOException;
 
@@ -31,18 +31,22 @@ public class MainView {
     private void initialize() {
         System.out.println("initialized");
         // get the account from the log in dialog
-        DataGet.getUsers();
-        nameLb.setText("Welcome" + " " + DataGet.mainAccount.getName());
+        // DataHandle.getUsers();
+        // FIXME: mainAccount error
+        DataHandle.getCustomers();
+        nameLb.setText("Welcome" + " " + DataHandle.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
-        // log out button 
+        // log out button
         logOutBtn.setOnAction(event -> {
-            DataGet.resetList();
+            // FIXME: reset the list
+            // DataHandle.resetList();
             loadPage("LogInDialog", event);
         });
         transferButton.setOnAction(event -> loadPane("Transfer", event));
 
     }
+
     // method to load the pane
     private void loadPane(String name, ActionEvent event) {
 
@@ -52,7 +56,7 @@ public class MainView {
             if (stage.getTitle().equals(name)) {
                 return;
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/pane/" + name + ".fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/Pane/" + name + ".fxml"));
 
                 AnchorPane newPane = loader.load();
 
@@ -75,7 +79,7 @@ public class MainView {
     }
 
     private void loadPage(String page, ActionEvent event) {
-        try {  
+        try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));

@@ -8,7 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import tin.bank.client.model.Account;
-import tin.bank.client.model.DataGet;
+import tin.bank.client.model.DataHandle;
 
 public class Transfer {
     // TODO: Jan 02 2023
@@ -18,7 +18,7 @@ public class Transfer {
     // 3. Add combobox to select and find account DONE
     // 4. Add textfield to enter amount DONE
     // go go
-    private LinkedList<Account> accounts = DataGet.accounts;
+    private LinkedList<Account> accounts = DataHandle.accounts;
     @FXML
     private MFXComboBox<Account> accountBox;
 
@@ -34,7 +34,7 @@ public class Transfer {
     @FXML
     private void initialize() {
         // Set the current account balance
-        currentBtn.setText(DataGet.mainAccount.getBalance().toString());
+        currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
         // Add all accounts name to the ComboBox
         accountBox.getItems().addAll(accounts);
         okBtn.setOnAction(this::handleTransfer);
@@ -43,20 +43,18 @@ public class Transfer {
     // FIXME: Later or improve server structure then improve this method
     // @FXML
     // NOTE: I will improve this method later
+    // TODO: Jan 07 2023
     private void handleTransfer(ActionEvent event) {
         // Get the selected account from the ComboBox
-        Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
+        // Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
 
         // Continue with the rest of the transfer process...
         // Get the amount from the textfield
-        int amount = Integer.parseInt(amountTextfield.getText());
+        Double amount = Double.parseDouble(amountTextfield.getText());
 
-        if (DataGet.mainAccount.transferTo(selectedAccount, amount)) {
+        // FIXME: handle transfer later
+        DataHandle.transferMoney(DataHandle.mainAccount.getId(), accountBox.getValue().getId(), amount);
 
-            // Transfer failed
-            // Show an error message
-            amountTextfield.setText("Transfer failed");
-        }
-        currentBtn.setText(DataGet.mainAccount.getBalance().toString());
+        currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
     }
 }
