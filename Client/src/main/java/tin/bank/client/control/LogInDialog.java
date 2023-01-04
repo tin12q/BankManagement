@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tin.bank.client.model.DataGet;
 
 import java.io.IOException;
 
@@ -71,7 +72,9 @@ public class LogInDialog {
     private void loadPage(String page, ActionEvent event) {
         try {
             // FIXME: Login check here
-            if (true) {
+            boolean logInCheck = DataGet.loginCheck(usr.getText(), pwd.getText());
+            if (logInCheck) {
+                DataGet.getMainAccount(usr.getText());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();
@@ -98,7 +101,9 @@ public class LogInDialog {
             // FIXME: login check here again
 
             // logInCheck = new LogInCheck(usr.getText(), pwd.getText());
-            if (true) {
+            boolean logInCheck = DataGet.loginCheck(usr.getText(), pwd.getText());
+            if (logInCheck) {
+                DataGet.getMainAccount(usr.getText());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();

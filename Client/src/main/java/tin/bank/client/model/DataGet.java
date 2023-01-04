@@ -14,7 +14,7 @@ public class DataGet {
     private static Connection conn;
 
     // connect to database
-    private void connection() {
+    private static void connection() {
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, usr, pss);
@@ -26,7 +26,7 @@ public class DataGet {
     }
 
     // get Main Account
-    public void getMainAccount(String username) {
+    public static void getMainAccount(String username) {
         try {
             connection();
             String sql = "{CALL GetCustomerInfo(?)}";
@@ -68,7 +68,7 @@ public class DataGet {
     // get all accounts
 
     // login check
-    public boolean loginCheck(String username, String password) {
+    public static boolean loginCheck(String username, String password) {
         boolean isValid = false;
         try {
             connection();
@@ -120,7 +120,7 @@ public class DataGet {
      * 
      * @InitialDeposit DECIMAL(18,2)
      */
-    public void createUser(String fname, String lname, String dob, String email, String phone, String address,
+    public static void createUser(String fname, String lname, String dob, String email, String phone, String address,
             String city,
             String state, String zip, String username, String password, Double initialDeposit) {
         try {
@@ -153,7 +153,7 @@ public class DataGet {
     }
 
     // get customer counts
-    public int getCustomerCount() {
+    public static int getCustomerCount() {
         int count = 0;
         try {
             connection();
@@ -183,7 +183,7 @@ public class DataGet {
     // @SourceAccountId INT,
     // @DestinationAccountId INT,
     // @Amount DECIMAL(18,2)
-    public void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
+    public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
         try {
             connection();
             String sql = "{CALL TransferFunds(?, ?, ?)}";
@@ -205,7 +205,7 @@ public class DataGet {
     }
 
     // get other account list
-    public void getCustomers() {
+    public static void getCustomers() {
         try {
             connection();
             String sql = "{CALL GetCustomers(?)}";

@@ -32,6 +32,7 @@ public class MainView {
         System.out.println("initialized");
         // get the account from the log in dialog
         // DataGet.getUsers();
+        // FIXME: mainAccount error
         nameLb.setText("Welcome" + " " + DataGet.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
