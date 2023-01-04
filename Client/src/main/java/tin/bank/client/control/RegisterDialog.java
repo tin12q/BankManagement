@@ -1,8 +1,6 @@
 package tin.bank.client.control;
 
 import java.io.IOException;
-import java.lang.module.ModuleDescriptor.Modifier;
-import java.lang.reflect.Method;
 import java.sql.Date;
 import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
@@ -18,8 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import tin.bank.client.model.DataGet;
+import tin.bank.client.model.DataHandle;
 
 import javafx.scene.Node;
 
@@ -76,14 +73,14 @@ public class RegisterDialog {
 
     private void loadPage(String page, ActionEvent event) {
         try {
-            if (DataGet.checkUserExists(usr.getText())) {
+            if (DataHandle.checkUserExists(usr.getText())) {
                 System.out.println("User already exists");
                 usr.setText("Username already exists");
                 return;
             } else {
                 LocalDate date = datePicker.getValue();
                 Date sqlDate = Date.valueOf(date);
-                DataGet.createUser(fname.getText(), lname.getText(), sqlDate, email.getText(), phone.getText(),
+                DataHandle.createUser(fname.getText(), lname.getText(), sqlDate, email.getText(), phone.getText(),
                         addr.getText(), city.getText(), state.getText(), zipcode.getText(), usr.getText(),
                         pwd.getText(), (double) 0);
                 FXMLLoader loader = new FXMLLoader();

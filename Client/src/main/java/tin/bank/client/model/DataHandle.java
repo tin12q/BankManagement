@@ -3,7 +3,7 @@ package tin.bank.client.model;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class DataGet {
+public class DataHandle {
     // mssql connection
     private final static String url = "jdbc:sqlserver://localhost:57000;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
@@ -82,7 +82,7 @@ public class DataGet {
             isValid = stmt.getBoolean(3);
             return isValid;
         } catch (Exception e) {
-            System.out.println("DataGet.loginCheck()");
+            System.out.println("DataHandle.loginCheck()");
         } finally {
             try {
                 conn.close();
@@ -167,7 +167,7 @@ public class DataGet {
                 count = customerCount;
             }
         } catch (Exception e) {
-            System.out.println("DataGet.getCustomerCount()");
+            System.out.println("DataHandle.getCustomerCount()");
         } finally {
             try {
                 conn.close();
@@ -193,7 +193,7 @@ public class DataGet {
             stmt.setDouble(3, amount);
             stmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println("DataGet.transferMoney()");
+            System.out.println("DataHandle.transferMoney()");
         } finally {
             try {
                 conn.close();
@@ -248,12 +248,12 @@ public class DataGet {
             isValid = stmt.getBoolean(2);
             return isValid;
         } catch (Exception e) {
-            System.out.println("DataGet.checkUsernameExists()");
+            System.out.println("DataHandle.checkUsernameExists()");
         } finally {
             try {
                 conn.close();
             } catch (Exception e) {
-                System.out.println("DataGet.checkUsernameExists()");
+                System.out.println("DataHandle.checkUsernameExists()");
             }
         }
         return isValid;

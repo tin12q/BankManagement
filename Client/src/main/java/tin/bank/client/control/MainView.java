@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import tin.bank.client.model.DataGet;
+import tin.bank.client.model.DataHandle;
 
 import java.io.IOException;
 
@@ -31,16 +31,16 @@ public class MainView {
     private void initialize() {
         System.out.println("initialized");
         // get the account from the log in dialog
-        // DataGet.getUsers();
+        // DataHandle.getUsers();
         // FIXME: mainAccount error
-        DataGet.getCustomers();
-        nameLb.setText("Welcome" + " " + DataGet.mainAccount.toString());
+        DataHandle.getCustomers();
+        nameLb.setText("Welcome" + " " + DataHandle.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
         // log out button
         logOutBtn.setOnAction(event -> {
             // FIXME: reset the list
-            // DataGet.resetList();
+            // DataHandle.resetList();
             loadPage("LogInDialog", event);
         });
         transferButton.setOnAction(event -> loadPane("Transfer", event));

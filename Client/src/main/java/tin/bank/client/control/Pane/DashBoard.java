@@ -2,7 +2,7 @@ package tin.bank.client.control.Pane;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import tin.bank.client.model.DataGet;
+import tin.bank.client.model.DataHandle;
 
 public class DashBoard {
     @FXML
@@ -10,6 +10,6 @@ public class DashBoard {
 
     @FXML
     private void initialize() {
-        balanceBtn.setText(DataGet.mainAccount.getBalance().toString());
+        balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
     }
 }
