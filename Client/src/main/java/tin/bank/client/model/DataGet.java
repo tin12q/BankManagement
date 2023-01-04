@@ -38,7 +38,7 @@ public class DataGet {
                 String customerId = rs.getString("CustomerId");
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
-                String dateOfBirth = rs.getString("DateOfBirth");
+                Date dateOfBirth = rs.getDate("DateOfBirth");
                 String email = rs.getString("Email");
                 String phone = rs.getString("Phone");
                 String address = rs.getString("Address");
@@ -120,7 +120,7 @@ public class DataGet {
      * 
      * @InitialDeposit DECIMAL(18,2)
      */
-    public static void createUser(String fname, String lname, String dob, String email, String phone, String address,
+    public static void createUser(String fname, String lname, Date dob, String email, String phone, String address,
             String city,
             String state, String zip, String username, String password, Double initialDeposit) {
         try {
@@ -129,7 +129,7 @@ public class DataGet {
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, fname);
             stmt.setString(2, lname);
-            stmt.setDate(3, Date.valueOf(dob));
+            stmt.setDate(3, dob);
             stmt.setString(4, email);
             stmt.setString(5, phone);
             stmt.setString(6, address);
@@ -232,5 +232,30 @@ public class DataGet {
                 e.printStackTrace();
             }
         }
+    }
+
+    // check username exists
+    public static boolean checkUserExists(String username) {
+        boolean isValid = false;
+        try {
+            connection();
+            String sql = "{CALL GetLoginInfo(?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, username);
+            stmt.registerOutParameter(2, Types.BIT);
+            stmt.execute();
+
+            isValid = stmt.getBoolean(2);
+            return isValid;
+        } catch (Exception e) {
+            System.out.println("DataGet.checkUsernameExists()");
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                System.out.println("DataGet.checkUsernameExists()");
+            }
+        }
+        return isValid;
     }
 }

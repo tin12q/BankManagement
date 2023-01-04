@@ -33,6 +33,7 @@ public class MainView {
         // get the account from the log in dialog
         // DataGet.getUsers();
         // FIXME: mainAccount error
+        DataGet.getCustomers();
         nameLb.setText("Welcome" + " " + DataGet.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
@@ -55,7 +56,7 @@ public class MainView {
             if (stage.getTitle().equals(name)) {
                 return;
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/pane/" + name + ".fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/Pane/" + name + ".fxml"));
 
                 AnchorPane newPane = loader.load();
 

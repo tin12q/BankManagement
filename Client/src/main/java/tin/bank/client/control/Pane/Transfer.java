@@ -50,9 +50,10 @@ public class Transfer {
 
         // Continue with the rest of the transfer process...
         // Get the amount from the textfield
-        int amount = Integer.parseInt(amountTextfield.getText());
+        Double amount = Double.parseDouble(amountTextfield.getText());
 
         // FIXME: handle transfer later
+        DataGet.transferMoney(DataGet.mainAccount.getId(), accountBox.getValue().getId(), amount);
 
         currentBtn.setText(DataGet.mainAccount.getBalance().toString());
     }

@@ -1,5 +1,7 @@
 package tin.bank.client.model;
 
+import java.sql.Date;
+
 public class Account {
     private String id;
     private String fname;
@@ -8,7 +10,7 @@ public class Account {
     private String email;
     private String phone;
     private String address;
-    private String DOB;
+    private Date DOB;
     private String city;
     private String state;
     private String zipCode;
@@ -25,7 +27,7 @@ public class Account {
         return address;
     }
 
-    public String getDOB() {
+    public Date getDOB() {
         return DOB;
     }
 
@@ -42,7 +44,7 @@ public class Account {
     }
 
     public Account(String id, String fname, String lname, Double balance, String email, String phone, String address,
-            String dateOfBirth, String city, String state, String zipCode, String username) {
+            Date dateOfBirth, String city, String state, String zipCode, String username) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
