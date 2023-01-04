@@ -43,20 +43,17 @@ public class Transfer {
     // FIXME: Later or improve server structure then improve this method
     // @FXML
     // NOTE: I will improve this method later
+    // TODO: Jan 07 2023
     private void handleTransfer(ActionEvent event) {
         // Get the selected account from the ComboBox
-        Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
+        // Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
 
         // Continue with the rest of the transfer process...
         // Get the amount from the textfield
         int amount = Integer.parseInt(amountTextfield.getText());
 
-        if (DataGet.mainAccount.transferTo(selectedAccount, amount)) {
+        // FIXME: handle transfer later
 
-            // Transfer failed
-            // Show an error message
-            amountTextfield.setText("Transfer failed");
-        }
         currentBtn.setText(DataGet.mainAccount.getBalance().toString());
     }
 }

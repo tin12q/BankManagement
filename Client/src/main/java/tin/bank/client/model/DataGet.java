@@ -11,140 +11,226 @@ public class DataGet {
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
     public static Account mainAccount;
+    private static Connection conn;
 
-    /*
-     * init method
-     * private void init() {
-     * try {
-     * // sql server driver
-     * Class.forName(driver);
-     * // connection
-     * Connection con = DriverManager.getConnection(url, usr, pss);
-     * // statement
-     * Statement st = con.createStatement();
-     * // result
-     * ResultSet rs = st.executeQuery("select * from login");
-     * while (rs.next()) {
-     * System.out.println(rs.getString(1) + " " + rs.getString(2) + " " +
-     * rs.getString(3));
-     * }
-     * } catch (ClassNotFoundException e) {
-     * 
-     * } catch (Exception e) {
-     * e.printStackTrace();
-     * }
-     * }
-     */
-    // FIXME: Why this shit in here?
-    // Need to improve this method by compare the id with the id in the database
-    // within sql query
-    // password check
-    public static boolean passCheck(String id, String password) {
+    // connect to database
+    private void connection() {
         try {
-            // sql server driver
             Class.forName(driver);
-            // connection
-            Connection con = DriverManager.getConnection(url, usr, pss);
-            // statement
-            Statement st = con.createStatement();
-            // result
-            ResultSet rs = st.executeQuery(
-                    "select * from login where username = '" + id + "' and password = '" + password + "'");
+            conn = DriverManager.getConnection(url, usr, pss);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver not found");
+        } catch (SQLException e) {
+            System.out.println("Connection failed");
+        }
+    }
+
+    // get Main Account
+    public void getMainAccount(String username) {
+        try {
+            connection();
+            String sql = "{CALL GetCustomerInfo(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String thisId = rs.getString("id");
-                // System.out.println(rs.getString("id"));
-                ResultSet rs2 = st.executeQuery("select * from account where id = '" + thisId + "'");
-                rs2.next();
-                mainAccount = new Account(rs2.getString("id"), rs2.getString("name"), rs2.getDouble("balance"));
-                return true;
-            } else
-                return false;
-
-        } catch (ClassNotFoundException ignored) {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-    // TODO: Jan 01 2023
-    // 1. Add a method to get all the accounts DONE
-    // 2. Add a method to get all the transactions In progress
-    // 3. Add a method to get all the users DONE
-    // 4. Output the result to UI DONE
-
-    // Get all the user to a list
-    public LinkedList<Account> getAccounts() {
-        return accounts;
-    }
-
-    public static void addAccount(Account account) {
-        accounts.add(account);
-    }
-
-    public static void getUsers() {
-        try {
-            // sql server driver
-            Class.forName(driver);
-            // connection
-            Connection con = DriverManager.getConnection(url, usr, pss);
-            // statement
-            Statement st = con.createStatement();
-            ResultSet rs;
-            // result without main account
-            if (mainAccount == null) {
-                rs = st.executeQuery("select * from account");
+                String customerId = rs.getString("CustomerId");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String dateOfBirth = rs.getString("DateOfBirth");
+                String email = rs.getString("Email");
+                String phone = rs.getString("Phone");
+                String address = rs.getString("Address");
+                String city = rs.getString("City");
+                String state = rs.getString("State");
+                String zipCode = rs.getString("ZipCode");
+                Double balance = rs.getDouble("Balance");
+                mainAccount = new Account(customerId, firstName, lastName, balance, email, phone, address, dateOfBirth,
+                        city, state, zipCode, username);
+                // process the customer information
             } else {
-                rs = st.executeQuery("select * from account where id != '" + mainAccount.getId() + "'");
+                System.out.println("No customer found");
             }
-
-            while (rs.next()) {
-                // add to list
-                Account account = new Account(rs.getString("id"), rs.getString("name"), rs.getDouble("balance"));
-                addAccount(account);
-            }
-
-        } catch (ClassNotFoundException ignored) {
-
         } catch (Exception e) {
-            e.printStackTrace();
+            // TODO: handle exception
+            System.out.println("Error");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-    }
 
-    public static void getUsersWithID() {
+    }
+    // get all accounts
+
+    // login check
+    public boolean loginCheck(String username, String password) {
+        boolean isValid = false;
         try {
-            // sql server driver
-            Class.forName(driver);
-            // connection
-            Connection con = DriverManager.getConnection(url, usr, pss);
-            // statement
-            Statement st = con.createStatement();
-            ResultSet rs;
-            // result without main account
-            // TODO: Use another method to get the id CHECk
-            rs = st.executeQuery("select username from login l inner join account a on l.account_id = a.id");
+            connection();
+            String sql = "{CALL CheckLogin(?, ?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            stmt.registerOutParameter(3, Types.BIT);
+            stmt.execute();
 
-            while (rs.next()) {
-                // add to list
-                Account account = new Account(rs.getString("username"));
-                addAccount(account);
-            }
-
-        } catch (ClassNotFoundException ignored) {
-
+            isValid = stmt.getBoolean(3);
+            return isValid;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("DataGet.loginCheck()");
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
+        return isValid;
+
+    }
+
+    // create user
+    /*
+     * @FirstName VARCHAR(50),
+     * 
+     * @LastName VARCHAR(50),
+     * 
+     * @DateOfBirth DATE,
+     * 
+     * @Email VARCHAR(255),
+     * 
+     * @Phone VARCHAR(15),
+     * 
+     * @Address VARCHAR(255),
+     * 
+     * @City VARCHAR(50),
+     * 
+     * @State VARCHAR(50),
+     * 
+     * @ZipCode VARCHAR(10),
+     * 
+     * @username VARCHAR(50),
+     * 
+     * @password VARCHAR(50),
+     * 
+     * @InitialDeposit DECIMAL(18,2)
+     */
+    public void createUser(String fname, String lname, String dob, String email, String phone, String address,
+            String city,
+            String state, String zip, String username, String password, Double initialDeposit) {
+        try {
+            connection();
+            String sql = "{CALL CreateCustomerAccount(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, fname);
+            stmt.setString(2, lname);
+            stmt.setDate(3, Date.valueOf(dob));
+            stmt.setString(4, email);
+            stmt.setString(5, phone);
+            stmt.setString(6, address);
+            stmt.setString(7, city);
+            stmt.setString(8, state);
+            stmt.setString(9, zip);
+            stmt.setString(10, username);
+            stmt.setString(11, password);
+            stmt.setDouble(12, initialDeposit);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
-    // Method to reset the list
-    public static void resetList() {
-        accounts.clear();
+    // get customer counts
+    public int getCustomerCount() {
+        int count = 0;
+        try {
+            connection();
+            String sql = "{CALL GetCustomerCount()}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int customerCount = rs.getInt("CustomerCount");
+                // process the customer count
+                count = customerCount;
+            }
+        } catch (Exception e) {
+            System.out.println("DataGet.getCustomerCount()");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return count;
     }
 
-    public static int getNumberOfAccounts() {
-        return accounts.size();
+    // money transfer
+    // @SourceAccountId INT,
+    // @DestinationAccountId INT,
+    // @Amount DECIMAL(18,2)
+    public void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
+        try {
+            connection();
+            String sql = "{CALL TransferFunds(?, ?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, sourceAccountId);
+            stmt.setString(2, destinationAccountId);
+            stmt.setDouble(3, amount);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DataGet.transferMoney()");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
+    // get other account list
+    public void getCustomers() {
+        try {
+            connection();
+            String sql = "{CALL GetCustomers(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, mainAccount.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String customerId = rs.getString("CustomerId");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String username = rs.getString("Username");
+                // process the customer information
+                Account account = new Account(customerId, firstName, lastName, username);
+                accounts.add(account);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
 }

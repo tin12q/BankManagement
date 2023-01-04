@@ -2,19 +2,72 @@ package tin.bank.client.model;
 
 public class Account {
     private String id;
-    private String name;
+    private String fname;
+    private String lname;
     private Double balance;
-    private boolean isBlocked;
+    private String email;
+    private String phone;
+    private String address;
+    private String DOB;
+    private String city;
+    private String state;
+    private String zipCode;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public Account(String id, String fname, String lname, Double balance, String email, String phone, String address,
+            String dateOfBirth, String city, String state, String zipCode, String username) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.balance = balance;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.DOB = dateOfBirth;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.username = username;
+    }
+
+    public Account(String id, String fname, String lname, String username) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.username = username;
+    }
+
     private String username;
 
     public String getUsername() {
         return username;
-    }
-
-    public Account(String id, String name, Double balance) {
-        this.id = id;
-        this.name = name;
-        this.balance = balance;
     }
 
     public Account(String username) {
@@ -33,46 +86,9 @@ public class Account {
         this.balance = balance;
     }
 
-    public Double credit(int Amount) {
-        this.balance += Amount;
-        return this.balance;
-    }
-
-    public boolean debit(int Amount) {
-        if (Amount <= balance) {
-            this.balance -= Amount;
-            isBlocked = false;
-        } else {
-
-            System.out.println("Amount exceeded balance");
-            isBlocked = true;
-
-        }
-        return this.isBlocked;
-    }
-
-    public boolean transferTo(Account a, int Amount) {
-        System.out.println(DataGet.mainAccount.getBalance() + " " + a.getBalance() + " Amount " + Amount);
-        if (Amount <= balance) {
-            a.balance += Amount;
-            this.balance -= Amount;
-            isBlocked = false;
-            return this.isBlocked;
-        } else {
-            isBlocked = true;
-            System.out.println("Amount exceeded balance");
-            return this.isBlocked;
-        }
-
-    }
-
     public String toString() {
         // return "Account is " + this.id + " name " + this.name + " balance " +
         // this.balance;
-        return this.name;
-    }
-
-    public String getName() {
-        return name;
+        return this.fname + this.lname;
     }
 }
