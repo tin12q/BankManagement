@@ -13,16 +13,17 @@ public class DataUp {
         String url = "jdbc:sqlserver://localhost:57000;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
         // conecting to database
         // TODO: update excuteUpdate
-        // Account(id,name,balance)
-        // login(id,username,password)
+        // Account(id,name, email, phone address,reg_date, balance)
+        // login(id,account_id,username,password)
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url, "sa", "Abcd1234!");
             Statement st = con.createStatement();
-            // insert into login table
-            st.executeUpdate("insert into login values ('" + username + "', '" + password + "')");
+
+            // insert into login(id,account_id,username,password)
+            st.executeUpdate("insert into login (username,password) values ( '" + username + "', '" + password + "')");
             // insert into account table
-            st.executeUpdate("insert into account values ('" + username + "', '" + name + "', 0)");
+            st.executeUpdate("insert into account(name,balance) values ( '" + name + "', 0)");
             con.close();
         } catch (ClassNotFoundException ignored) {
         } catch (Exception e) {
