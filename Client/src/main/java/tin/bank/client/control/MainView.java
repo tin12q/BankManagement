@@ -31,18 +31,20 @@ public class MainView {
     private void initialize() {
         System.out.println("initialized");
         // get the account from the log in dialog
-        DataGet.getUsers();
-        nameLb.setText("Welcome" + " " + DataGet.mainAccount.getName());
+        // DataGet.getUsers();
+        nameLb.setText("Welcome" + " " + DataGet.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
-        // log out button 
+        // log out button
         logOutBtn.setOnAction(event -> {
-            DataGet.resetList();
+            // FIXME: reset the list
+            // DataGet.resetList();
             loadPage("LogInDialog", event);
         });
         transferButton.setOnAction(event -> loadPane("Transfer", event));
 
     }
+
     // method to load the pane
     private void loadPane(String name, ActionEvent event) {
 
@@ -75,7 +77,7 @@ public class MainView {
     }
 
     private void loadPage(String page, ActionEvent event) {
-        try {  
+        try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));

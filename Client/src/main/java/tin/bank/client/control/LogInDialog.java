@@ -14,12 +14,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import tin.bank.client.model.LogInCheck;
 
 import java.io.IOException;
 
 public class LogInDialog {
-    private LogInCheck logInCheck;
+
     private String usrStr;
     @FXML
     private AnchorPane ac;
@@ -71,8 +70,8 @@ public class LogInDialog {
 
     private void loadPage(String page, ActionEvent event) {
         try {
-            logInCheck = new LogInCheck(usr.getText(), pwd.getText());
-            if (logInCheck.check()) {
+            // FIXME: Login check here
+            if (true) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();
@@ -96,8 +95,10 @@ public class LogInDialog {
 
     private void enterLoadPage(String page, KeyEvent event) {
         try {
-            logInCheck = new LogInCheck(usr.getText(), pwd.getText());
-            if (logInCheck.check()) {
+            // FIXME: login check here again
+
+            // logInCheck = new LogInCheck(usr.getText(), pwd.getText());
+            if (true) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/tin/bank/client/" + page + ".fxml"));
                 Parent content = loader.load();

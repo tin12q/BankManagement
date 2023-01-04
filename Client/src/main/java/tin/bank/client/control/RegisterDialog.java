@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tin.bank.client.model.Account;
 import tin.bank.client.model.DataGet;
-import tin.bank.client.model.LogInCheck;
+
 import javafx.scene.Node;
 
 public class RegisterDialog {
@@ -36,10 +36,11 @@ public class RegisterDialog {
 
     @FXML
     private void initialize() {
-        DataGet.getUsersWithID();
-        int id = DataGet.getNumberOfAccounts() + 2;
+        // DataGet.getUsersWithID();
+        // FIXME: getNumber later
+        // int id = DataGet.getNumberOfAccounts() + 2;
 
-        System.out.println(id);
+        // System.out.println(id);
 
         registerBtn.setOnAction(event -> loadPage("LogInDialog", event));
 
