@@ -71,7 +71,7 @@ public class LogInDialog {
 
     private void loadPage(String page, ActionEvent event) {
         try {
-            // FIXME: Login check here
+
             boolean logInCheck = DataHandle.loginCheck(usr.getText(), pwd.getText());
             if (logInCheck) {
                 DataHandle.getMainAccount(usr.getText());
@@ -98,9 +98,7 @@ public class LogInDialog {
 
     private void enterLoadPage(String page, KeyEvent event) {
         try {
-            // FIXME: login check here again
 
-            // logInCheck = new LogInCheck(usr.getText(), pwd.getText());
             boolean logInCheck = DataHandle.loginCheck(usr.getText(), pwd.getText());
             if (logInCheck) {
                 DataHandle.getMainAccount(usr.getText());

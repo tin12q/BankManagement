@@ -12,9 +12,7 @@ public class DataUp {
         // sql connection
         String url = "jdbc:sqlserver://localhost:57000;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
         // conecting to database
-        // TODO: update excuteUpdate
-        // Account(id,name, email, phone address,reg_date, balance)
-        // login(id,account_id,username,password)
+        // TODO: Can Drop
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url, "sa", "Abcd1234!");

@@ -30,17 +30,15 @@ public class MainView {
     @FXML
     private void initialize() {
         System.out.println("initialized");
-        // get the account from the log in dialog
-        // DataHandle.getUsers();
-        // FIXME: mainAccount error
+
         DataHandle.getCustomers();
         nameLb.setText("Welcome" + " " + DataHandle.mainAccount.toString());
         // load the dashboard pane
         dBBtn.setOnAction(event -> loadPane("DashBoard", event));
         // log out button
         logOutBtn.setOnAction(event -> {
-            // FIXME: reset the list
-            // DataHandle.resetList();
+            DataHandle.resetList();
+
             loadPage("LogInDialog", event);
         });
         transferButton.setOnAction(event -> loadPane("Transfer", event));

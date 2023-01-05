@@ -20,8 +20,8 @@ public class MainClient extends Application {
     // 1. Add a method to check if the user is logged in [X]
     // 2. Add a method to log in [X]
     // 3. Add a method to log out [X]
-    // 4. Add a method to register [In progress]
-    // 5. Add a method to change password []
+    // 4. Add a method to register [x]
+    // 5. Add a method to change password [In progress]
 
     public static void main(String[] args) {
         launch();

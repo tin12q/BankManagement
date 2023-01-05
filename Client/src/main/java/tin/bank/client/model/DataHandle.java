@@ -53,13 +53,12 @@ public class DataHandle {
                 System.out.println("No customer found");
             }
         } catch (Exception e) {
-            // TODO: handle exception
+
             System.out.println("Error");
         } finally {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -87,39 +86,13 @@ public class DataHandle {
             try {
                 conn.close();
             } catch (Exception e) {
-                // TODO: handle exception
+                e.printStackTrace();
             }
         }
         return isValid;
 
     }
 
-    // create user
-    /*
-     * @FirstName VARCHAR(50),
-     * 
-     * @LastName VARCHAR(50),
-     * 
-     * @DateOfBirth DATE,
-     * 
-     * @Email VARCHAR(255),
-     * 
-     * @Phone VARCHAR(15),
-     * 
-     * @Address VARCHAR(255),
-     * 
-     * @City VARCHAR(50),
-     * 
-     * @State VARCHAR(50),
-     * 
-     * @ZipCode VARCHAR(10),
-     * 
-     * @username VARCHAR(50),
-     * 
-     * @password VARCHAR(50),
-     * 
-     * @InitialDeposit DECIMAL(18,2)
-     */
     public static void createUser(String fname, String lname, Date dob, String email, String phone, String address,
             String city,
             String state, String zip, String username, String password, Double initialDeposit) {
@@ -146,7 +119,6 @@ public class DataHandle {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -172,7 +144,6 @@ public class DataHandle {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -180,9 +151,6 @@ public class DataHandle {
     }
 
     // money transfer
-    // @SourceAccountId INT,
-    // @DestinationAccountId INT,
-    // @Amount DECIMAL(18,2)
     public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
         try {
             connection();
@@ -198,7 +166,6 @@ public class DataHandle {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -223,12 +190,11 @@ public class DataHandle {
                 accounts.add(account);
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         } finally {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -257,5 +223,9 @@ public class DataHandle {
             }
         }
         return isValid;
+    }
+
+    public static void resetList() {
+        accounts.clear();
     }
 }
