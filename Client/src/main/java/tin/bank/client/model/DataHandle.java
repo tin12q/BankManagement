@@ -225,6 +225,26 @@ public class DataHandle {
         return isValid;
     }
 
+    // withdraw money
+    public static void withdrawMoney(String accountId, Double amount) {
+        try {
+            connection();
+            String sql = "{CALL WithdrawFunds(?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, accountId);
+            stmt.setDouble(2, amount);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DataHandle.withdrawMoney()");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void resetList() {
         accounts.clear();
     }

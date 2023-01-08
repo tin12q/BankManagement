@@ -25,6 +25,8 @@ public class MainView {
     @FXML
     private MFXButton logOutBtn;
     @FXML
+    private MFXButton withdrawBtn;
+    @FXML
     private MFXButton transferButton;
 
     @FXML
@@ -41,6 +43,8 @@ public class MainView {
 
             loadPage("LogInDialog", event);
         });
+        // withdraw button
+        withdrawBtn.setOnAction(event -> loadPane("Withdraw", event));
         transferButton.setOnAction(event -> loadPane("Transfer", event));
 
     }
