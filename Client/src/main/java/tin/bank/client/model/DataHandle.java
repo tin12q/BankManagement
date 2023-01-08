@@ -245,6 +245,26 @@ public class DataHandle {
         }
     }
 
+    // deposit fund
+    public static void depositMoney(String accountId, Double amount) {
+        try {
+            connection();
+            String sql = "{CALL DepositFunds(?, ?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, accountId);
+            stmt.setDouble(2, amount);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DataHandle.depositMoney()");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void resetList() {
         accounts.clear();
     }
