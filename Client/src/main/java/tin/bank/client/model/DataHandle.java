@@ -288,9 +288,10 @@ public class DataHandle {
                 String Date = rs.getDate("DateTime").toString();
                 String description = rs.getString("Description");
                 int destinationCustomerId = rs.getInt("destionation_id");
+                String destinationName = rs.getString("destinationName");
                 // process the customer information
                 Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
-                        destinationCustomerId);
+                        destinationCustomerId, destinationName);
                 ledgers.add(ledger);
                 System.out.println(ledger.toString());
             }

@@ -36,7 +36,7 @@ public class MainView {
 
     @FXML
     private void initialize() {
-        DataHandle.getLedger();
+        // DataHandle.getLedger();
         System.out.println("initialized");
 
         DataHandle.getCustomers();

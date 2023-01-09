@@ -5,7 +5,7 @@
 
 <MFXScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #2f3954;" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.History">
    <content>
-      <GridPane fx:id="gridPane" alignment="CENTER" hgap="10.0" prefHeight="900.0" prefWidth="1200.0" stylesheets="@../css/box.css" vgap="10.0" />
+      <GridPane fx:id="gridPane" alignment="CENTER" hgap="20.0" prefHeight="900.0" prefWidth="1200.0" stylesheets="@../css/box.css" vgap="20.0" />
       
    </content>
 </MFXScrollPane>
