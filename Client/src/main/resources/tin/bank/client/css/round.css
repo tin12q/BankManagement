@@ -109,3 +109,19 @@
 .combo-box-base:disabled {
   -fx-opacity: 0.4;
 }
+.table-view {
+  -fx-background-color: #2f3954;
+  -fx-text-fill: #f4f5fc;
+}
+.table-view .column-header {
+  -fx-background-color: #8ebbff;
+  -fx-text-fill: #f4f5fc;
+  -fx-border-color: #24293e;
+  -fx-border-width: 0.5;
+}
+.table-view .table-row-cell {
+  -fx-background-color: #2f3954;
+  -fx-text-fill: #f4f5fc;
+  -fx-border-color: #24293e;
+  -fx-border-width: 0.5;
+}

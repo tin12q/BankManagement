@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.LinkedList;
+
 public class DataHandle {
     // mssql connection
     private final static String url = "jdbc:sqlserver://tin12q.ddns.net;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
@@ -11,7 +12,7 @@ public class DataHandle {
     private static final String pss = "Abcd1234!";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
-    public static ObservableList<Ledger> ledgers;
+    public static LinkedList<Ledger> ledgers = new LinkedList<>();
     public static Account mainAccount;
     private static Connection conn;
 
@@ -270,7 +271,8 @@ public class DataHandle {
     public static void resetList() {
         accounts.clear();
     }
-    public static void getLedger(){
+
+    public static void getLedger() {
         try {
             connection();
             String sql = "{CALL GetLedger(?)}";
@@ -287,8 +289,10 @@ public class DataHandle {
                 String description = rs.getString("Description");
                 int destinationCustomerId = rs.getInt("destionation_id");
                 // process the customer information
-                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description, destinationCustomerId);
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId);
                 ledgers.add(ledger);
+                System.out.println(ledger.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -300,7 +304,8 @@ public class DataHandle {
             }
         }
     }
-    public static void resetLedger(){
+
+    public static void resetLedger() {
         ledgers.clear();
     }
 }

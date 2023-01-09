@@ -1,0 +1,6 @@
+.transaction-box {
+  -fx-background-color: #8ebbff; /* Sky blue color */
+
+  -fx-border-width: 2;
+  -fx-border-radius: 5;
+}
