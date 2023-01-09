@@ -15,16 +15,16 @@ public class Deposit {
 
     @FXML
     private void initialize() {
-        okBtn.setOnAction(event -> withdraw(amountTextField.getText()));
+        okBtn.setOnAction(event -> Deposit(amountTextField.getText()));
 
     }
 
-    private void withdraw(String amount) {
+    private void Deposit(String amount) {
         Double amountDouble = Double.parseDouble(amount);
         if (amountDouble <= 0) {
-            amountTextField.setText("Withdraw failed");
+            amountTextField.setText("Deposit failed");
         } else {
-            DataHandle.withdrawMoney(DataHandle.mainAccount.getId(), amountDouble);
+            DataHandle.depositMoney(DataHandle.mainAccount.getId(), amountDouble);
             DataHandle.getMainAccount(DataHandle.mainAccount.getUsername());
             currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
         }

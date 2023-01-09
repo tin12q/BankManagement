@@ -1,8 +1,9 @@
 package tin.bank.client.model;
 
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.LinkedList;
-
 public class DataHandle {
     // mssql connection
     private final static String url = "jdbc:sqlserver://tin12q.ddns.net;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
@@ -10,6 +11,7 @@ public class DataHandle {
     private static final String pss = "Abcd1234!";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
+    public static ObservableList<Ledger> ledgers;
     public static Account mainAccount;
     private static Connection conn;
 
@@ -267,5 +269,38 @@ public class DataHandle {
 
     public static void resetList() {
         accounts.clear();
+    }
+    public static void getLedger(){
+        try {
+            connection();
+            String sql = "{CALL GetLedger(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, mainAccount.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("customerId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("destionation_id");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description, destinationCustomerId);
+                ledgers.add(ledger);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void resetLedger(){
+        ledgers.clear();
     }
 }

@@ -28,6 +28,11 @@ public class MainView {
     private MFXButton withdrawBtn;
     @FXML
     private MFXButton transferButton;
+    @FXML
+    private MFXButton depositBtn;
+    @FXML
+    private MFXButton historyBtn;
+
 
     @FXML
     private void initialize() {
@@ -46,7 +51,8 @@ public class MainView {
         // withdraw button
         withdrawBtn.setOnAction(event -> loadPane("Withdraw", event));
         transferButton.setOnAction(event -> loadPane("Transfer", event));
-
+        depositBtn.setOnAction(event -> loadPane("Deposit",event));
+        historyBtn.setOnAction(event -> loadPane("History",event));
     }
 
     // method to load the pane

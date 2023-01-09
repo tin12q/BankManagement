@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.Deposit">
+    <children>
+        <MFXTextField fx:id="amountTextField" layoutX="565.0" layoutY="425.0" prefHeight="51.0" prefWidth="283.0" />
+        <MFXButton fx:id="okBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="916.0" layoutY="409.0" prefHeight="83.0" prefWidth="102.0" />
+        <StackPane alignment="BOTTOM_CENTER" layoutX="78.0" layoutY="284.0">
+            <children>
+                <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Total">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </MFXButton>
+                <MFXButton fx:id="currentBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                </MFXButton>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

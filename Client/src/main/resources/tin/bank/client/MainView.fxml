@@ -27,7 +27,7 @@
                   <Insets />
                </VBox.margin>
             </MFXButton>
-            <MFXButton depthLevel="LEVEL5" layoutX="57.0" layoutY="60.0" prefHeight="105.0" prefWidth="207.0" text="Deposit">
+            <MFXButton fx:id="depositBtn" depthLevel="LEVEL5" layoutX="57.0" layoutY="60.0" prefHeight="105.0" prefWidth="207.0" text="Deposit">
                <font>
                   <Font size="30.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font size="30.0" />
                </font>
             </MFXButton>
-            <MFXButton depthLevel="LEVEL5" layoutX="57.0" layoutY="310.0" prefHeight="105.0" prefWidth="207.0" text="Loan">
+            <MFXButton fx:id="historyBtn" depthLevel="LEVEL5" layoutX="57.0" layoutY="310.0" prefHeight="105.0" prefWidth="207.0" text="History">
                <font>
                   <Font size="30.0" />
                </font>
