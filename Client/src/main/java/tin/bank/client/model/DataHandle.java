@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class DataHandle {
     // mssql connection
-    private final static String url = "jdbc:sqlserver://tin12q.ddns.net;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
+    private final static String url = "jdbc:sqlserver://localhost;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
     private static final String pss = "Abcd1234!";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -29,6 +29,7 @@ public class DataHandle {
     }
 
     // get Main Account
+
     public static void getMainAccount(String username) {
         try {
             connection();
@@ -67,6 +68,7 @@ public class DataHandle {
         }
 
     }
+
     // get all accounts
 
     // login check
@@ -128,31 +130,32 @@ public class DataHandle {
     }
 
     // get customer counts
-    public static int getCustomerCount() {
-        int count = 0;
-        try {
-            connection();
-            String sql = "{CALL GetCustomerCount()}";
-            CallableStatement stmt = conn.prepareCall(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int customerCount = rs.getInt("CustomerCount");
-                // process the customer count
-                count = customerCount;
-            }
-        } catch (Exception e) {
-            System.out.println("DataHandle.getCustomerCount()");
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return count;
-    }
-
+    /*
+     * public static int getCustomerCount() {
+     * int count = 0;
+     * try {
+     * connection();
+     * String sql = "{CALL GetCustomerCount()}";
+     * CallableStatement stmt = conn.prepareCall(sql);
+     * ResultSet rs = stmt.executeQuery();
+     * 
+     * if (rs.next()) {
+     * int customerCount = rs.getInt("CustomerCount");
+     * // process the customer count
+     * count = customerCount;
+     * }
+     * } catch (Exception e) {
+     * System.out.println("DataHandle.getCustomerCount()");
+     * } finally {
+     * try {
+     * conn.close();
+     * } catch (SQLException e) {
+     * e.printStackTrace();
+     * }
+     * }
+     * return count;
+     * }
+     */
     // money transfer
     public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
         try {
@@ -282,13 +285,13 @@ public class DataHandle {
 
             while (rs.next()) {
                 int transactionId = rs.getInt("TransactionId");
-                int sourceCustomerId = rs.getInt("customerId");
+                int sourceCustomerId = rs.getInt("AccountId");
                 String transactionType = rs.getString("TransactionType");
                 Double amount = rs.getDouble("Amount");
                 String Date = rs.getDate("DateTime").toString();
                 String description = rs.getString("Description");
-                int destinationCustomerId = rs.getInt("destionation_id");
-                String destinationName = rs.getString("destinationName");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
                 // process the customer information
                 Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
                         destinationCustomerId, destinationName);

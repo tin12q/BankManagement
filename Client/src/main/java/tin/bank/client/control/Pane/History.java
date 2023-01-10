@@ -29,7 +29,8 @@ public class History {
             // set VBox
             VBox vBox = new VBox();
             vBox.setSpacing(20);
-            vBox.setPrefWidth(300);
+            vBox.setPrefWidth(400);
+            vBox.setPrefHeight(300);
             vBox.setPadding(new Insets(10));
             vBox.getStyleClass().add("transaction-box");
             // set Label infomation

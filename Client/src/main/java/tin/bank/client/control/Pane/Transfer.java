@@ -50,6 +50,7 @@ public class Transfer {
 
         // Continue with the rest of the transfer process...
         // Get the amount from the textfield
+        // TODO: Add regex
         Double amount = Double.parseDouble(amountTextfield.getText());
         if (amount <= 0) {
             amountTextfield.setText("Transfer failed");
