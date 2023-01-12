@@ -91,6 +91,6 @@ public class Account {
     public String toString() {
         // return "Account is " + this.id + " name " + this.name + " balance " +
         // this.balance;
-        return this.fname + this.lname;
+        return this.fname + " " + this.lname;
     }
 }

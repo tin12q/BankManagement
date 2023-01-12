@@ -53,7 +53,7 @@ public class MainView {
         withdrawBtn.setOnAction(event -> loadPane("Withdraw", event));
         transferButton.setOnAction(event -> loadPane("Transfer", event));
         depositBtn.setOnAction(event -> loadPane("Deposit", event));
-        historyBtn.setOnAction(event -> loadSPane("History", event));
+        historyBtn.setOnAction(event -> loadPane("History", event));
     }
 
     // load scroll pane

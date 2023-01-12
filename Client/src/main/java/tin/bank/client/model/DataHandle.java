@@ -1,13 +1,12 @@
 package tin.bank.client.model;
 
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.util.LinkedList;
 
 public class DataHandle {
     // mssql connection
-    private final static String url = "jdbc:sqlserver://localhost;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
+
+    private final static String url = "jdbc:sqlserver://tin12q.ddns.net;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
     private static final String pss = "Abcd1234!";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
