@@ -1,5 +1,8 @@
 package tin.bank.client.control.Pane;
 
+import java.util.Comparator;
+
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
 import javafx.geometry.Insets;
@@ -15,6 +18,15 @@ import tin.bank.client.model.Ledger;
 public class History {
     @FXML
     private GridPane gridPane;
+    @FXML
+    private MFXButton byNameBtn;
+    @FXML
+    private MFXButton byTypeBtn;
+    @FXML
+    private MFXButton byAmountBtn;
+
+    @FXML
+    private MFXButton findBtn;
 
     @FXML
     private void initialize() {
@@ -23,9 +35,28 @@ public class History {
 
         // TODO: Phân loại các giao dịch theo loại
         // TODO: GetLedger byOrder
+        byNameBtn.setOnAction(event -> sortBy("Name"));
+        byTypeBtn.setOnAction(event -> sortBy("Type"));
+        byAmountBtn.setOnAction(event -> sortBy("Amount"));
+        // findBtn.setOnAction(event -> find());
+        addToScene();
+
+    }
+
+    private void sortBy(String type) {
+        gridPane.getChildren().clear();
+        DataHandle.ledgers.clear();
+        DataHandle.sortBy(type);
         addToScene();
     }
 
+    /*
+     * private void find() {
+     * gridPane.getChildren().clear();
+     * DataHandle.find();
+     * addToScene();
+     * }
+     */
     private void addToScene() {
         int row = 0;
         int col = 0;

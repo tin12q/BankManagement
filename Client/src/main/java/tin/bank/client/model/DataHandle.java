@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class DataHandle {
     // mssql connection
 
-    private final static String url = "jdbc:sqlserver://tin12q.ddns.net;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
+    private final static String url = "jdbc:sqlserver://localhost;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
     private static final String pss = "Abcd1234!";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -310,5 +310,75 @@ public class DataHandle {
 
     public static void resetLedger() {
         ledgers.clear();
+    }
+
+    public static void sortBy(String type) {
+        try {
+            connection();
+
+            String sql = "{CALL sortBy" + type + "(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, mainAccount.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("AccountId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId, destinationName);
+                ledgers.add(ledger);
+                System.out.println(ledger.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void find(String DestinationName) {
+        try {
+            connection();
+            String sql = "{CALL Find(?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, mainAccount.getId());
+            stmt.setString(2, DestinationName);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("AccountId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId, destinationName);
+                ledgers.add(ledger);
+                System.out.println(ledger.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
