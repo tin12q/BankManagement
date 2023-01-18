@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tin.bank.client.model.DataHandle;
@@ -137,10 +138,46 @@ public class MainView {
             throw new RuntimeException(e);
         }
     }
+
     // TODO: Jan 02 2023
     // 1. Add Dashboard pane DONE
     // 2. Add Transfer pane In progress
     // 3. Add Deposit pane In progress
     // 4. Add Withdraw pane not started
     // 5. Add History pane not started
+    private void loadMPane(String name, MouseEvent event) {
+
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // check if the pane is already loaded
+            if (stage.getTitle().equals(name)) {
+                return;
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tin/bank/client/Pane/" + name + ".fxml"));
+
+                AnchorPane newPane = loader.load();
+
+                // Set the loaded FXML file as the content of our main right-side pane
+                ac1.getChildren().setAll(newPane);
+
+                stage.setTitle(name);
+                // Reset the anchors
+                AnchorPane.setBottomAnchor(newPane, 0.0);
+                AnchorPane.setLeftAnchor(newPane, 0.0);
+                AnchorPane.setRightAnchor(newPane, 0.0);
+                AnchorPane.setTopAnchor(newPane, 0.0);
+                System.out.println("Loaded " + name + " page");
+                System.out.println(stage.getTitle());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Open profile by clicking on the name
+    @FXML
+    void profileBtn(MouseEvent event) {
+        loadMPane("Profile", event);
+    }
 }

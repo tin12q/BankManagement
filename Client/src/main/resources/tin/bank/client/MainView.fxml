@@ -11,7 +11,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="293.0" layoutY="55.0" prefHeight="900.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #2F3954;" stylesheets="@css/round.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="nameLb" text="Name" wrapText="true">
+            <Label fx:id="nameLb" onMouseClicked="#profileBtn" text="Name" wrapText="true">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>

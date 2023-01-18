@@ -347,6 +347,41 @@ public class DataHandle {
         }
     }
 
+    public static void findName(String DestinationName) {
+        try {
+            connection();
+            String sql = "{CALL FindDestinationName(?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, mainAccount.getId());
+            stmt.setString(2, DestinationName);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("AccountId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId, destinationName);
+                ledgers.add(ledger);
+                System.out.println(ledger.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void find(String DestinationName) {
         try {
             connection();
