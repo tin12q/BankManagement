@@ -47,7 +47,6 @@ public class MainView {
         // log out button
         logOutBtn.setOnAction(event -> {
             DataHandle.resetList();
-
             loadPage("LogInDialog", event);
         });
         // withdraw button

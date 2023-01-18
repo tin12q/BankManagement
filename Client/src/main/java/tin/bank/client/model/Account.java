@@ -6,6 +6,15 @@ public class Account {
     private String id;
     private String fname;
     private String lname;
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
     private Double balance;
     private String email;
     private String phone;

@@ -1,6 +1,7 @@
 package tin.bank.client.model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class DataHandle {
@@ -408,6 +409,34 @@ public class DataHandle {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void updateCustomer(String id, String fname, String lname, String email, String phone, String address,
+            String city, String state, String zip, Date dob) {
+        try {
+            connection();
+            String sql = "{CALL UpdateCustomer(?,?,?,?,?,?,?,?,?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, id);
+            stmt.setString(2, fname);
+            stmt.setString(3, lname);
+            stmt.setDate(4, dob);
+            stmt.setString(5, email);
+            stmt.setString(6, phone);
+            stmt.setString(7, address);
+            stmt.setString(8, city);
+            stmt.setString(9, state);
+            stmt.setString(10, zip);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DataHandle.updateCustomer()");
         } finally {
             try {
                 conn.close();
