@@ -3,9 +3,13 @@ package tin.bank.client.control.Pane;
 import java.util.Comparator;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.enums.FloatMode;
 import javafx.fxml.FXML;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 
 import javafx.scene.layout.GridPane;
@@ -33,12 +37,33 @@ public class History {
         DataHandle.getLedger();
         System.out.println("oke");
 
-        // TODO: Phân loại các giao dịch theo loại
-        // TODO: GetLedger byOrder
         byNameBtn.setOnAction(event -> sortBy("Name"));
         byTypeBtn.setOnAction(event -> sortBy("Type"));
         byAmountBtn.setOnAction(event -> sortBy("Amount"));
-        // findBtn.setOnAction(event -> find());
+        findBtn.setOnAction(event -> {
+            // create new dialog have textfield to get name and find by database
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Find");
+            dialog.setHeaderText("Find by name");
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+            MFXTextField textField = new MFXTextField();
+            textField.setFloatMode(FloatMode.BORDER);
+            dialog.getDialogPane().setContent(textField);
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == ButtonType.OK) {
+                    return textField.getText();
+                }
+                return null;
+            });
+
+            dialog.showAndWait().ifPresent(name -> {
+                gridPane.getChildren().clear();
+                DataHandle.ledgers.clear();
+                DataHandle.findName(name);
+                addToScene();
+                System.out.println(name);
+            });
+        });
         addToScene();
 
     }
