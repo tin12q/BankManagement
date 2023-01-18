@@ -12,12 +12,7 @@ import tin.bank.client.model.Account;
 import tin.bank.client.model.DataHandle;
 
 public class Transfer {
-    // TODO: Jan 02 2023
-    // 1. Add a method to transfer money to another account DONE
-    // 2. Add button to transfer money DONE
-    // 3. Add combobox to select and find account DONE
-    // 4. Add textfield to enter amount DONE
-    // go go
+
     private LinkedList<Account> accounts = DataHandle.accounts;
     @FXML
     private ComboBox<Account> accountBox;
