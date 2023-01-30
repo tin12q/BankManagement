@@ -2,7 +2,9 @@ package tin.bank.client.control.Pane;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.enums.FloatMode;
 import javafx.fxml.FXML;
+import javafx.scene.layout.BorderRepeat;
 import tin.bank.client.model.DataHandle;
 
 public class Withdraw {
@@ -15,6 +17,9 @@ public class Withdraw {
 
     @FXML
     private void initialize() {
+        currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
+        amountTextField.setFloatMode(FloatMode.BORDER);
+        okBtn.setText("Withdraw");
         okBtn.setOnAction(event -> withdraw(amountTextField.getText()));
 
     }

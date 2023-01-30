@@ -3,6 +3,15 @@ package tin.bank.client.model;
 public class Ledger {
     private int transactionId;
     private int sourceCustomerId;
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public int getSourceCustomerId() {
+        return sourceCustomerId;
+    }
+
     private String transactionType;
 
     private double amount;
@@ -49,6 +58,10 @@ public class Ledger {
 
     public String getTransactionDate() {
         return transactionDate;
+    }
+
+    public String getDate() {
+        return transactionDate.substring(5, 10);
     }
 
     public String getDescription() {

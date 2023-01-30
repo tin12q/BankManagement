@@ -29,38 +29,55 @@ public class History {
 
     @FXML
     private MFXButton findBtn;
+    @FXML
+    private MFXTextField nameField;
 
     @FXML
     private void initialize() {
+        DataHandle.ledgers.clear();
         DataHandle.getLedger();
         System.out.println("oke");
 
         byNameBtn.setOnAction(event -> sortBy("Name"));
         byTypeBtn.setOnAction(event -> sortBy("Type"));
         byAmountBtn.setOnAction(event -> sortBy("Amount"));
+        /*
+         * findBtn.setOnAction(event -> {
+         * // create new dialog have textfield to get name and find by database
+         * Dialog<String> dialog = new Dialog<>();
+         * dialog.setTitle("Find");
+         * dialog.setHeaderText("Find by name");
+         * dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK,
+         * ButtonType.CANCEL);
+         * MFXTextField textField = new MFXTextField();
+         * textField.setFloatMode(FloatMode.BORDER);
+         * dialog.getDialogPane().setContent(textField);
+         * dialog.setResultConverter(dialogButton -> {
+         * if (dialogButton == ButtonType.OK) {
+         * return textField.getText();
+         * }
+         * return null;
+         * });
+         * 
+         * dialog.showAndWait().ifPresent(name -> {
+         * gridPane.getChildren().clear();
+         * DataHandle.ledgers.clear();
+         * DataHandle.findName(name);
+         * addToScene();
+         * });
+         * });
+         */
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            gridPane.getChildren().clear();
+            DataHandle.ledgers.clear();
+            DataHandle.findName(newValue);
+            addToScene();
+        });
         findBtn.setOnAction(event -> {
-            // create new dialog have textfield to get name and find by database
-            Dialog<String> dialog = new Dialog<>();
-            dialog.setTitle("Find");
-            dialog.setHeaderText("Find by name");
-            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-            MFXTextField textField = new MFXTextField();
-            textField.setFloatMode(FloatMode.BORDER);
-            dialog.getDialogPane().setContent(textField);
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == ButtonType.OK) {
-                    return textField.getText();
-                }
-                return null;
-            });
-
-            dialog.showAndWait().ifPresent(name -> {
-                gridPane.getChildren().clear();
-                DataHandle.ledgers.clear();
-                DataHandle.findName(name);
-                addToScene();
-                System.out.println(name);
-            });
+            gridPane.getChildren().clear();
+            DataHandle.ledgers.clear();
+            DataHandle.findName(nameField.getText());
+            addToScene();
         });
         addToScene();
 
@@ -118,8 +135,8 @@ public class History {
 
             }
             // Label destinationId = new Label("To " + Ledger.getDestinationCustomerId());
-            Label amount = new Label(Ledger.getAmount());
-            Label date = new Label(Ledger.getTransactionDate());
+            Label amount = new Label("Amount: " + Ledger.getAmount());
+            Label date = new Label("On: " + Ledger.getTransactionDate());
             destinationId.getStyleClass().add("transaction-destination");
             vBox.getChildren().addAll(destinationId, hBox);
             vBox.setMargin(destinationId, new Insets(0, 0, 0, 10));

@@ -21,7 +21,7 @@ public class MainView {
     @FXML
     private Label nameLb;
     @FXML
-    private AnchorPane ac1;
+    public AnchorPane ac1;
     @FXML
     private MFXButton dBBtn;
     @FXML
@@ -87,7 +87,7 @@ public class MainView {
     }
 
     // method to load the pane
-    private void loadPane(String name, ActionEvent event) {
+    public void loadPane(String name, ActionEvent event) {
 
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -179,4 +179,5 @@ public class MainView {
     void profileBtn(MouseEvent event) {
         loadMPane("Profile", event);
     }
+
 }

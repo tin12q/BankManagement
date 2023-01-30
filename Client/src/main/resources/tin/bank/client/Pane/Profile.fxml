@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +14,14 @@
    <children>
       <VBox alignment="CENTER" layoutX="110.0" layoutY="-36.0" prefHeight="200.0" prefWidth="700.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="700.0" stylesheets="@../css/round.css" />
+            <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="700.0" stylesheets="@../css/round.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="706.0" text="Profile">
+                     <font>
+                        <Font size="70.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="700.0" spacing="10.0" stylesheets="@../css/round.css">
                <children>
                   <MFXTextField fx:id="fname" floatMode="BORDER" prefHeight="70.0" prefWidth="300.0" promptText="First Name">
@@ -110,7 +118,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="71.0" prefWidth="700.0" spacing="20.0" stylesheets="@../css/round.css">
                <children>
-                  <MFXButton fx:id="changeBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="131.0" layoutY="20.0" prefHeight="57.0" prefWidth="100.0" text="Change">
+                  <MFXButton fx:id="changeBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="131.0" layoutY="20.0" prefHeight="57.0" prefWidth="100.0" text="Update">
                      <font>
                         <Font size="15.0" />
                      </font>

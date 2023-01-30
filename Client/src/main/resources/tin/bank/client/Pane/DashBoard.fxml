@@ -44,7 +44,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="historyBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -63,7 +63,7 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                      <children>
-                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Loan">
+                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Withdraw">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -71,7 +71,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="withdrawBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -88,7 +88,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="transferBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>

@@ -1,7 +1,7 @@
 package tin.bank.client.model;
 
 import java.sql.*;
-import java.time.LocalDate;
+
 import java.util.LinkedList;
 
 public class DataHandle {
@@ -436,7 +436,7 @@ public class DataHandle {
             stmt.setString(10, zip);
             stmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println("DataHandle.updateCustomer()");
+            System.out.println("Update Failed");
         } finally {
             try {
                 conn.close();
@@ -445,4 +445,5 @@ public class DataHandle {
             }
         }
     }
+    //TODO: 
 }
