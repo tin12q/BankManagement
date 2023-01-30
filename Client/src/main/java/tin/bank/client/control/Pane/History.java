@@ -124,7 +124,12 @@ public class History {
             Label destinationId = new Label();
             switch (Ledger.getTransactionType()) {
                 case "transfer":
-                    destinationId.setText("To " + Ledger.getDestinationName());
+
+                    if (Double.parseDouble(Ledger.getAmount()) > 0) {
+                        destinationId.setText("From " + Ledger.getDestinationName());
+                    } else {
+                        destinationId.setText("To " + Ledger.getDestinationName());
+                    }
                     break;
                 case "Withdraw":
                     destinationId.setText("Withdraw");
@@ -135,7 +140,7 @@ public class History {
 
             }
             // Label destinationId = new Label("To " + Ledger.getDestinationCustomerId());
-            Label amount = new Label("Amount: " + Ledger.getAmount());
+            Label amount = new Label("Amount: " + Math.abs(Double.parseDouble(Ledger.getAmount())));
             Label date = new Label("On: " + Ledger.getTransactionDate());
             destinationId.getStyleClass().add("transaction-destination");
             vBox.getChildren().addAll(destinationId, hBox);
