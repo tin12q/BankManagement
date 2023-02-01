@@ -8,6 +8,9 @@ module tin.bank.server {
     requires com.microsoft.sqlserver.jdbc;
 
     opens tin.bank.server to javafx.fxml;
+
     exports tin.bank.server;
+
+    opens tin.bank.server.model to javafx.base;
 
 }

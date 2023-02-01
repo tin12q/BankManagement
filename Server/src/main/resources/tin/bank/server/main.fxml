@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.server.mainController">
    <children>
-      <Label layoutX="164.0" layoutY="174.0" prefHeight="17.0" prefWidth="253.0" text="server" />
       <TabPane prefHeight="293.0" prefWidth="464.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="User">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="595.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="595.0">
+                     <children>
+                        <TableView fx:id="usrTable" layoutY="132.0" prefHeight="738.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idCol" minWidth="114.0" prefWidth="75.0" text="id" />
+                            <TableColumn fx:id="firstNameCol" minWidth="114.0" prefWidth="75.0" text="fname" />
+                              <TableColumn fx:id="lastNameCol" minWidth="114.0" prefWidth="75.0" text="lname" />
+                              <TableColumn fx:id="DOBCol" minWidth="114.0" prefWidth="75.0" text="DOB" />
+                              <TableColumn fx:id="addressCol" minWidth="114.0" prefWidth="75.0" text="addr" />
+                              <TableColumn fx:id="balanceCol" minWidth="114.0" prefWidth="75.0" text="balance" />
+                              <TableColumn fx:id="cityCol" minWidth="114.0" prefWidth="75.0" text="city" />
+                              <TableColumn fx:id="emailCol" minWidth="114.0" prefWidth="75.0" text="email" />
+                              <TableColumn fx:id="phoneCol" minWidth="114.0" prefWidth="75.0" text="phone" />
+                              <TableColumn fx:id="usernameCol" minWidth="114.0" prefWidth="75.0" text="usr" />
+                              <TableColumn fx:id="passwordCol" minWidth="114.0" prefWidth="75.0" text="pwd" />
+                              <TableColumn fx:id="stateCol" minWidth="114.0" prefWidth="75.0" text="state" />
+                              <TableColumn fx:id="zipCodeCol" minWidth="114.0" prefWidth="75.0" text="zipCode" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Untitled Tab 2">
