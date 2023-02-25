@@ -1,6 +1,7 @@
 package tin.bank.client.control.Pane;
 
 import java.util.LinkedList;
+import javafx.scene.control.ButtonType;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 
@@ -8,20 +9,25 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.layout.HBox;
 import tin.bank.client.model.Account;
 import tin.bank.client.model.DataHandle;
 
 public class Transfer {
 
-    private LinkedList<Account> accounts = DataHandle.accounts;
     @FXML
-    private ComboBox<Account> accountBox;
+    private MFXTextField idTf;
 
     @FXML
     private MFXTextField amountTextfield;
 
     @FXML
     private MFXButton currentBtn;
+    @FXML
+    private HBox idHb;
+    @FXML
+    private HBox acHb;
 
     @FXML
     private MFXButton okBtn;
@@ -31,11 +37,10 @@ public class Transfer {
         // Set the current account balance
         currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
         // Add all accounts name to the ComboBox
-        accountBox.getItems().addAll(accounts);
+
         okBtn.setOnAction(this::handleTransfer);
     }
 
-    // FIXME: Later or improve server structure then improve this method
     // @FXML
     // NOTE: I will improve this method later
     // TODO: Jan 07 2023
@@ -51,7 +56,26 @@ public class Transfer {
             amountTextfield.setText("Transfer failed");
 
         } else {
-            DataHandle.transferMoney(DataHandle.mainAccount.getId(), accountBox.getValue().getId(), amount);
+            // DataHandle.transferMoney(DataHandle.mainAccount.getId(),
+            // accountBox.getValue().getId(), amount);
+            // create dialog to confirm
+            String destinationId = idTf.getText();
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("Confirm");
+            dialog.setHeaderText(
+                    "Are you sure you want to transfer " + amount + " to " + DataHandle.getName(destinationId) + "?");
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            dialog.showAndWait();
+            if (dialog.getResult() == ButtonType.OK) {
+                DataHandle.transferMoney(DataHandle.mainAccount.getId(), destinationId, amount);
+                amountTextfield.setText("Transfer success");
+            } else {
+                amountTextfield.setText("Transfer failed");
+            }
+            // Show the result
+
+            // Update the current account balance
             DataHandle.getMainAccount(DataHandle.mainAccount.getUsername());
             currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
         }

@@ -18,9 +18,12 @@ public class DashBoard {
     private MFXButton transferBtn;
     @FXML
     private MFXButton withdrawBtn;
+    @FXML
+    private Label id;
 
     @FXML
     private void initialize() {
+        id.setText(DataHandle.mainAccount.getId());
         DataHandle.getLedger();
         balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
         // historyBtn.setOnAction(event -> loadPane("History", event));

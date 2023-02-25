@@ -445,5 +445,28 @@ public class DataHandle {
             }
         }
     }
-    //TODO: 
+
+    public static String getName(String Id) {
+
+        try {
+            connection();
+            String sql = "{CALL getName(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, Id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                return rs.getString("FirstName") + " " + rs.getString("LastName");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    // TODO:
 }
