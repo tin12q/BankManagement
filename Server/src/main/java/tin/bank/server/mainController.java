@@ -1,11 +1,15 @@
 package tin.bank.server;
 
+import java.io.File;
+
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import tin.bank.server.model.Account;
 import tin.bank.server.model.DataHandle;
 
@@ -16,6 +20,8 @@ public class mainController {
     // 3. Create function to add new account
     // 4. Create function to alter account
     // 5. Create function to delete account
+    @FXML
+    private MFXButton exportBtn;
 
     @FXML
     private TableView<Account> usrTable;
@@ -49,7 +55,23 @@ public class mainController {
     @FXML
     private void initialize() {
         DataHandle.getAllCustomers();
-        viewList();
+        // viewList();
+        exportBtn.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save file");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLSs files (*.xlss)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+            // Show the dialog and get the selected file
+            File file = fileChooser.showSaveDialog(exportBtn.getScene().getWindow());
+
+            if (file != null) {
+                System.out.println("Selected file: " + file.getAbsolutePath());
+                DataHandle.exportAccountsToExcel(DataHandle.accounts, file.getAbsolutePath());
+                System.out.println("Done");
+                // Call your export function with the selected file path
+                // exportAccountsToExcel(accounts, file.getAbsolutePath());
+            }
+        });
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("fname"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lname"));

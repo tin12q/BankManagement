@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +15,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="595.0">
                      <children>
-                        <TableView fx:id="usrTable" layoutY="132.0" prefHeight="738.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="usrTable" layoutY="132.0" prefHeight="869.0" prefWidth="1483.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="idCol" minWidth="114.0" prefWidth="75.0" text="id" />
                             <TableColumn fx:id="firstNameCol" minWidth="114.0" prefWidth="75.0" text="fname" />
@@ -31,6 +32,7 @@
                               <TableColumn fx:id="zipCodeCol" minWidth="114.0" prefWidth="75.0" text="zipCode" />
                           </columns>
                         </TableView>
+                        <MFXButton fx:id="exportBtn" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="23.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="Export" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

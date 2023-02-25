@@ -6,6 +6,8 @@ module tin.bank.server {
     requires MaterialFX;
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
+    requires org.apache.poi.poi;
+    requires jxl;
 
     opens tin.bank.server to javafx.fxml;
 
