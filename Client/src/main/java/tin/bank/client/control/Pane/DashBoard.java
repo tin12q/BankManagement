@@ -8,6 +8,7 @@ import javafx.scene.text.TextAlignment;
 import tin.bank.client.control.MainView;
 import tin.bank.client.model.DataHandle;
 import tin.bank.client.model.Ledger;
+import tin.bank.client.control.MainView;
 
 public class DashBoard {
     @FXML
@@ -23,6 +24,7 @@ public class DashBoard {
 
     @FXML
     private void initialize() {
+
         id.setText(DataHandle.mainAccount.getId());
         DataHandle.getLedger();
         balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
@@ -30,6 +32,7 @@ public class DashBoard {
         getHistory();
         getTransfer();
         getWithdraw();
+
     }
 
     private void getHistory() {
@@ -43,6 +46,8 @@ public class DashBoard {
 
         historyBtn.setText(label);
         historyBtn.setTextAlignment(TextAlignment.LEFT);
+        // historyBtn.setOnAction(e -> ex.geth().fire());
+
     }
 
     private void getTransfer() {
@@ -58,6 +63,7 @@ public class DashBoard {
 
         transferBtn.setText(label);
         transferBtn.setTextAlignment(TextAlignment.LEFT);
+        // transferBtn.setOnAction(e -> ex.getT().fire());
     }
 
     private void getWithdraw() {
@@ -73,5 +79,6 @@ public class DashBoard {
 
         withdrawBtn.setText(label);
         withdrawBtn.setTextAlignment(TextAlignment.LEFT);
+        // withdrawBtn.setOnAction(e -> ex.getW().fire());
     }
 }

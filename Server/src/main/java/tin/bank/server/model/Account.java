@@ -7,6 +7,18 @@ public class Account {
     private String fname;
     private String lname;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
     public String getFname() {
         return fname;
     }
@@ -24,6 +36,41 @@ public class Account {
     private String city;
     private String state;
     private String zipCode;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setStringDob(String dob) {
+        // format string to date
+
+        this.DOB = Date.valueOf(dob);
+
+    }
+
+    public void setDOB(Date dOB) {
+        DOB = dOB;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
     public String getEmail() {
         return email;
@@ -79,6 +126,10 @@ public class Account {
 
     private String username;
     private String password;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getPassword() {
         return password;

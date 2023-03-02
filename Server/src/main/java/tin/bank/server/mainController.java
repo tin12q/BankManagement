@@ -6,10 +6,16 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.converter.DoubleStringConverter;
 import tin.bank.server.model.Account;
 import tin.bank.server.model.DataHandle;
 
@@ -53,13 +59,22 @@ public class mainController {
     private TableColumn<Account, String> passwordCol;
 
     @FXML
+    private TextField findTf;
+    @FXML
+    private Button findBtn;
+    @FXML
+    private TableColumn<Account, Void> updateCol;
+    private Button updateBtn;
+
+    @FXML
     private void initialize() {
+
         DataHandle.getAllCustomers();
         // viewList();
         exportBtn.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save file");
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLSs files (*.xlss)", "*.xls");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
             fileChooser.getExtensionFilters().add(extFilter);
             // Show the dialog and get the selected file
             File file = fileChooser.showSaveDialog(exportBtn.getScene().getWindow());
@@ -85,15 +100,91 @@ public class mainController {
         zipCodeCol.setCellValueFactory(new PropertyValueFactory<>("zipCode"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+
+        // usrTable.getColumns().add(updateCol);
+
         ObservableList<Account> accountsList = FXCollections.observableArrayList(DataHandle.accounts);
+        usrTable.setEditable(true);
         usrTable.setItems(accountsList);
+        // set editable
+        firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        firstNameCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setFname(e.getNewValue());
+        });
+        lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setLname(e.getNewValue());
+        });
+        balanceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        balanceCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setBalance(e.getNewValue());
+        });
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setEmail(e.getNewValue());
+        });
+        phoneCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        phoneCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setPhone(e.getNewValue());
+        });
+        addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        addressCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setAddress(e.getNewValue());
+        });
+        // DOBCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        // DOBCol.setOnEditCommit(e -> {
+        // e.getTableView().getItems().get(e.getTablePosition().getRow()).setStringDob(e.getNewValue());
+        // });
+        cityCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        cityCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setCity(e.getNewValue());
+        });
+        stateCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        stateCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setState(e.getNewValue());
+        });
+        zipCodeCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        zipCodeCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setZipCode(e.getNewValue());
+        });
+        usernameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        usernameCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setUsername(e.getNewValue());
+        });
+        passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        passwordCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setPassword(e.getNewValue());
+        });
+        // check if a row is being edited
+        usrTable.editableProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != oldVal) {
+                // A row is being edited, show the update button
+                updateBtn.setVisible(true);
+            } else {
+                // No rows are being edited, hide the update button
+                updateBtn.setVisible(false);
+            }
+        });
+        findBtn.setOnAction(e -> {
+            String keyword = findTf.getText();
+            if (keyword != null) {
+                ObservableList<Account> accountsList2 = FXCollections
+                        .observableArrayList(DataHandle.searchCustomerByName(keyword));
+                usrTable.setItems(accountsList2);
+            }
+        });
+        // check changes in findTf
+        findTf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                ObservableList<Account> accountsList2 = FXCollections
+                        .observableArrayList(DataHandle.searchCustomerByName(newValue));
+                usrTable.setItems(accountsList2);
+            }
+        });
+        // on edited row add a update button then update the row in the database
+
     }
 
-    private void viewList() {
-        for (Account a : DataHandle.accounts) {
-            System.out.println(a.toString());
-        }
-    }
     // Create table to view all accounts
 
 }

@@ -9,7 +9,7 @@ public class DataHandle {
 
     private final static String url = "jdbc:sqlserver://localhost;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
-    private static final String pss = "Abcd1234!";
+    private static final String pss = "Abcd1234";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static LinkedList<Account> accounts = new LinkedList<>();
     public static LinkedList<Ledger> ledgers = new LinkedList<>();
@@ -468,5 +468,70 @@ public class DataHandle {
         }
         return null;
     }
-    // TODO:
+
+    public static void init() {
+        // for (int i = 100; i <= 10000; i++) {
+        // String fname = "Hao";
+        // String lname = "Phan";
+        // Date dob = Date.valueOf(LocalDate.of(2004, 07, 27));
+        // String email = "quy";
+        // String phone = "1234567890";
+        // String address = "1234 Main St ";
+        // String city = "New York ";
+        // String state = "NY ";
+        // String zip = "12345 ";
+        // String username = "hao";
+        // String password = "abcd";
+        // Double init = 1000000.0;
+        // DataHandle.createUser(fname, lname, dob, email, phone, address, city, state,
+        // zip, username, password, init);
+        // // DataHandle.createUser("acc", Integer.toString(i),new LocalDate().now(),
+        // // STYLESHEET_CASPIAN, STYLESHEET_CASPIAN, STYLESHEET_CASPIAN,
+        // // STYLESHEET_CASPIAN, STYLESHEET_CASPIAN, STYLESHEET_CASPIAN,
+        // // STYLESHEET_MODENA, STYLESHEET_CASPIAN, null);
+        // }
+        // for (int i = 1; i <= 3000; i++) {
+        // DataHandle.depositMoney(Integer.toString(i), 100000.0);
+        // }
+        // randomly generate 5000 transactions from 1521 accounts
+        // for (int i = 1; i <= 5000; i++) {
+        // int from = (int) (Math.random() * 1521) + 1;
+        // int to = (int) (Math.random() * 1521) + 1;
+        // double amount = (Math.random() * 1000) + 1;
+        // DataHandle.transferMoney(Integer.toString(from), Integer.toString(to),
+        // amount);
+        // }
+        // randomly generate 5000 deposits and withdrawals for 1521 accounts
+        // for (int i = 1; i <= 5000; i++) {
+        // int from = (int) (Math.random() * 1521) + 1;
+        // int to = (int) (Math.random() * 1521) + 1;
+        // double amount = (Math.random() * 1000) + 1;
+        // double amount2 = (Math.random() * 1000) + 1;
+        // DataHandle.depositMoney(Integer.toString(from), amount);
+        // DataHandle.withdrawMoney(Integer.toString(to), amount2);
+        // }
+        // // randomly generate 5000 deposits or withdrawals for account 1522
+        // for (int i = 1; i <= 70; i++) {
+        // int from = (int) (Math.random() * 2) + 1;
+        // double amount = (Math.random() * 1000) + 1;
+        // if (from == 1) {
+        // DataHandle.depositMoney("1522", amount);
+        // } else {
+        // DataHandle.withdrawMoney("1522", amount);
+        // }
+        // }
+        // // randomly generate 5000 transactions from account 1522
+        // for (int i = 1; i <= 50; i++) {
+        // int to = (int) (Math.random() * 1521) + 1;
+        // double amount = (Math.random() * 1000) + 1;
+        // DataHandle.transferMoney("1522", Integer.toString(to), amount);
+        // }
+        // // randomly generate 5000 transactions to account 1522
+        // for (int i = 1; i <= 50; i++) {
+        // int from = (int) (Math.random() * 1521) + 1;
+        // double amount = (Math.random() * 1000) + 1;
+        // DataHandle.transferMoney(Integer.toString(from), "1522", amount);
+        // }
+    }
+
 }

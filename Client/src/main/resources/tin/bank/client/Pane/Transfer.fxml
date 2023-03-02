@@ -38,9 +38,19 @@
                      </children>
                   </StackPane>
                   <StackPane alignment="BOTTOM_CENTER" layoutX="40.0" layoutY="10.0" />
-                  <MFXTextField fx:id="amountTextfield" floatMode="BORDER" prefHeight="60.0" prefWidth="250.0" stylesheets="@../css/Dashboard.css" />
-                  <MFXTextField fx:id="idTf" floatMode="BORDER" layoutX="533.0" layoutY="147.0" prefHeight="60.0" prefWidth="250.0" stylesheets="@../css/Dashboard.css" />
-                  <MFXButton fx:id="okBtn" prefHeight="118.0" prefWidth="197.0" stylesheets="@../css/round.css" text="Transfer" />
+                  <MFXTextField fx:id="amountTextfield" floatMode="BORDER" prefHeight="60.0" prefWidth="250.0" promptText="Amount" stylesheets="@../css/Dashboard.css" text="0">
+                     <font>
+                        <Font size="26.0" />
+                     </font></MFXTextField>
+                  <MFXTextField fx:id="idTf" floatMode="BORDER" layoutX="533.0" layoutY="147.0" prefHeight="60.0" prefWidth="250.0" promptText="Destination Id" stylesheets="@../css/Dashboard.css">
+                     <font>
+                        <Font size="26.0" />
+                     </font></MFXTextField>
+                  <MFXButton fx:id="okBtn" prefHeight="118.0" prefWidth="197.0" stylesheets="@../css/round.css" text="Transfer">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </MFXButton>
                </children>
             </HBox>
             <HBox fx:id="idHb" prefHeight="100.0" prefWidth="200.0" />

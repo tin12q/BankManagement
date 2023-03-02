@@ -19,7 +19,7 @@ public class DataHandle {
 
     private final static String url = "jdbc:sqlserver://localhost;databaseName=Bank;encrypt=true;trustServerCertificate=true ";
     private static final String usr = "sa";
-    private static final String pss = "Abcd1234!";
+    private static final String pss = "Abcd1234";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static List<Account> accounts = new ArrayList<>();
     public static List<Ledger> ledgers;
@@ -123,5 +123,65 @@ public class DataHandle {
             e.printStackTrace();
         }
 
+    }
+
+    public static List<Account> searchCustomerByName(String name) {
+        List<Account> accounts = new ArrayList<>();
+        try {
+            connection();
+            CallableStatement cs = conn.prepareCall("{call FindName(?)}");
+            cs.setString(1, name);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                String customerId = rs.getString("CustomerId");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                Date dateOfBirth = rs.getDate("DateOfBirth");
+                String email = rs.getString("Email");
+                String phone = rs.getString("Phone");
+                String address = rs.getString("Address");
+                String city = rs.getString("City");
+                String state = rs.getString("State");
+                String zipCode = rs.getString("ZipCode");
+                Double balance = rs.getDouble("Balance");
+                String username = rs.getString("Username");
+                String password = rs.getString("Password");
+                Account account = new Account(customerId, firstName, lastName, balance, email, phone, address,
+                        dateOfBirth,
+                        city, state, zipCode, username, password);
+                accounts.add(account);
+            }
+            disconnection();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
+
+    public static void updateCustomer(Account account) {
+        try {
+            connection();
+            String sql = "{CALL UpdateCustomer(?,?,?,?,?,?,?,?,?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, account.getId());
+            stmt.setString(2, account.getFname());
+            stmt.setString(3, account.getLname());
+            stmt.setDate(4, account.getDOB());
+            stmt.setString(5, account.getEmail());
+            stmt.setString(6, account.getPhone());
+            stmt.setString(7, account.getAddress());
+            stmt.setString(8, account.getCity());
+            stmt.setString(9, account.getState());
+            stmt.setString(10, account.getZipCode());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Update Failed");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
