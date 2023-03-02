@@ -5,19 +5,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.DashBoard">
+<AnchorPane fx:id="ac2" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" stylesheets="@../css/round.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.DashBoard">
    <children>
-      <VBox alignment="CENTER" layoutX="238.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="vb" alignment="BOTTOM_CENTER" layoutX="238.0" layoutY="42.0" prefHeight="290.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="id" alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="Label" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
+            <HBox alignment="BOTTOM_CENTER">
+               <children>
+                  <Region prefHeight="30.0" prefWidth="392.0" />
+                  <Label fx:id="id" alignment="CENTER" prefHeight="30.0" prefWidth="279.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
                   <StackPane alignment="BOTTOM_CENTER">
@@ -33,7 +39,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton fx:id="balanceBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="balanceBtn" buttonType="RAISED" prefHeight="160.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -50,51 +56,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </MFXButton>
-                        <MFXButton fx:id="historyBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                  </StackPane>
-               </children>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="140.0" spacing="50.0">
-               <children>
-                  <StackPane alignment="BOTTOM_CENTER">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                     <children>
-                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Withdraw">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
-                        </MFXButton>
-                        <MFXButton fx:id="withdrawBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                  </StackPane>
-                  <StackPane alignment="BOTTOM_CENTER" layoutX="40.0" layoutY="10.0">
-                     <children>
-                        <MFXButton alignment="TOP_CENTER" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="333.0" prefWidth="430.0" stylesheets="@../css/Dashboard.css" text="Transfer">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
-                        </MFXButton>
-                        <MFXButton fx:id="transferBtn" buttonType="RAISED" prefHeight="250.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
+                        <MFXButton fx:id="historyBtn" buttonType="RAISED" prefHeight="160.0" prefWidth="433.0" style="-fx-background-color: #8EBBFF;" text="Button" wrapText="true">
                            <font>
                               <Font size="32.0" />
                            </font>

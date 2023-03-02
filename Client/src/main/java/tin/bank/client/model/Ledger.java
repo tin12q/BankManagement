@@ -56,6 +56,10 @@ public class Ledger {
         return String.valueOf(amount);
     }
 
+    public Double getAmountDouble() {
+        return amount;
+    }
+
     public String getTransactionDate() {
         return transactionDate;
     }
@@ -68,7 +72,7 @@ public class Ledger {
         return description;
     }
 
-    public String getTransactionType() {
+    public String getType() {
         return transactionType;
     }
 }

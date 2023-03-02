@@ -35,9 +35,9 @@ public class History {
     @FXML
     private void initialize() {
         DataHandle.ledgers.clear();
-        DataHandle.getLedger();
-        System.out.println("oke");
 
+        System.out.println("oke");
+        DataHandle.getLedger();
         byNameBtn.setOnAction(event -> sortBy("Name"));
         byTypeBtn.setOnAction(event -> sortBy("Type"));
         byAmountBtn.setOnAction(event -> sortBy("Amount"));
@@ -122,7 +122,7 @@ public class History {
 
             // set Label infomation
             Label destinationId = new Label();
-            switch (Ledger.getTransactionType()) {
+            switch (Ledger.getType()) {
                 case "transfer":
 
                     if (Double.parseDouble(Ledger.getAmount()) > 0) {

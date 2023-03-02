@@ -1,14 +1,23 @@
 package tin.bank.client.control.Pane;
 
+import java.util.List;
+
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import tin.bank.client.control.MainView;
+
 import tin.bank.client.model.DataHandle;
 import tin.bank.client.model.Ledger;
-import tin.bank.client.control.MainView;
 
 public class DashBoard {
     @FXML
@@ -21,17 +30,86 @@ public class DashBoard {
     private MFXButton withdrawBtn;
     @FXML
     private Label id;
+    @FXML
+    private AnchorPane ac2;
+    @FXML
+    private VBox vb;
+
+    private static final String WITHDRAW_TYPE = "Withdraw";
+    private static final String DEPOSIT_TYPE = "Deposit";
+    private static final String TRANSFER_TYPE = "transfer";
 
     @FXML
     private void initialize() {
+        id.setWrapText(true);
+        // show text if text too long
+        id.setTextAlignment(TextAlignment.CENTER);
 
-        id.setText(DataHandle.mainAccount.getId());
+        id.setText("ID: " + DataHandle.mainAccount.getId());
+
         DataHandle.getLedger();
         balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
         // historyBtn.setOnAction(event -> loadPane("History", event));
+        DataHandle.ledgers.clear();
+        DataHandle.getLedger();
+
         getHistory();
-        getTransfer();
-        getWithdraw();
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        xAxis.setStyle("-fx-text-fill: #f4f5fc");
+        yAxis.setStyle("-fx-text-fill: #f4f5fc");
+        // Set the labels for the axes
+        xAxis.setLabel("Transaction Type");
+        yAxis.setLabel("Total Amount");
+
+        // Create the bar chart and add the data
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setTitle("Transaction History by Type");
+
+        List<Ledger> ledgerList = DataHandle.ledgers; // Get the ledger data from somewhere
+
+        ObservableList<XYChart.Series<String, Number>> seriesList = FXCollections.observableArrayList();
+
+        double withdrawTotal = 0;
+        double depositTotal = 0;
+        double transferTotal = 0;
+
+        // Calculate the total amount of each transaction type and add the data to the
+        // chart
+        for (Ledger ledger : ledgerList) {
+            if (ledger.getType().equals(WITHDRAW_TYPE)) {
+                withdrawTotal += ledger.getAmountDouble();
+            } else if (ledger.getType().equals(DEPOSIT_TYPE)) {
+                depositTotal += ledger.getAmountDouble();
+            } else if (ledger.getType().equals(TRANSFER_TYPE)) {
+                transferTotal += ledger.getAmountDouble();
+            }
+        }
+
+        XYChart.Series<String, Number> withdrawSeries = new XYChart.Series<>();
+        withdrawSeries.setName(WITHDRAW_TYPE);
+        withdrawSeries.getData().add(new XYChart.Data<>(WITHDRAW_TYPE, withdrawTotal));
+        seriesList.add(withdrawSeries);
+
+        XYChart.Series<String, Number> depositSeries = new XYChart.Series<>();
+        depositSeries.setName(DEPOSIT_TYPE);
+        depositSeries.getData().add(new XYChart.Data<>(DEPOSIT_TYPE, depositTotal));
+        seriesList.add(depositSeries);
+
+        XYChart.Series<String, Number> transferSeries = new XYChart.Series<>();
+        transferSeries.setName(TRANSFER_TYPE);
+        transferSeries.getData().add(new XYChart.Data<>(TRANSFER_TYPE, transferTotal));
+
+        seriesList.add(transferSeries);
+
+        barChart.setData(seriesList);
+        barChart.setStyle("-fx-text-fill: #f4f5fc");
+        barChart.setPrefSize(900, 600);
+        // add bar chart to current pane
+        // pane.getChildren().add(barChart);
+        // vb.setVisible(false);
+        ac2.getChildren().add(barChart);
 
     }
 
@@ -39,7 +117,7 @@ public class DashBoard {
         historyBtn.setFont(new Font(25));
         String label = "";
         for (Ledger ledger : DataHandle.ledgers) {
-            label += ledger.getDate() + " " + ledger.getTransactionType() + " " + ledger.getAmount()
+            label += ledger.getDate() + " " + ledger.getType() + " " + ledger.getAmount()
                     + "\n";
 
         }
@@ -54,7 +132,7 @@ public class DashBoard {
         transferBtn.setFont(new Font(25));
         String label = "";
         for (Ledger ledger : DataHandle.ledgers) {
-            if (ledger.getTransactionType().equals("transfer")) {
+            if (ledger.getType().equals("transfer")) {
                 label += ledger.getDate() + " To " + ledger.getDestinationName() + " " + ledger.getAmount()
                         + "\n";
             }
@@ -70,7 +148,7 @@ public class DashBoard {
         withdrawBtn.setFont(new Font(25));
         String label = "";
         for (Ledger ledger : DataHandle.ledgers) {
-            if (ledger.getTransactionType().equals("Withdraw")) {
+            if (ledger.getType().equals("Withdraw")) {
                 label += ledger.getDate() + " " + ledger.getAmount()
                         + "\n";
             }
