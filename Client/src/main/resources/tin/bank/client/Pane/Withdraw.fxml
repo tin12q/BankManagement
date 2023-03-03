@@ -21,7 +21,7 @@
          <font>
             <Font size="26.0" />
          </font></MFXTextField>
-      <MFXButton fx:id="okBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="916.0" layoutY="409.0" prefHeight="118.0" prefWidth="197.0">
+      <MFXButton fx:id="okBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="916.0" layoutY="405.0" prefHeight="118.0" prefWidth="197.0">
       <font>
          <Font size="26.0" />
       </font></MFXButton>

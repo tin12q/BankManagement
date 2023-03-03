@@ -3,6 +3,12 @@ package tin.bank.server.model;
 public class Ledger {
     private int transactionId;
     private int sourceCustomerId;
+    private String transactionType;
+    private double amount;
+    private String transactionDate;
+    private String description;
+    private int destinationCustomerId;
+    private String destinationName;
 
     public int getTransactionId() {
         return transactionId;
@@ -11,14 +17,6 @@ public class Ledger {
     public int getSourceCustomerId() {
         return sourceCustomerId;
     }
-
-    private String transactionType;
-
-    private double amount;
-    private String transactionDate;
-    private String description;
-    private int destinationCustomerId;
-    private String destinationName;
 
     public String getDestinationName() {
         return destinationName;

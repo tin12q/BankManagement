@@ -26,6 +26,7 @@
             <MFXButton fx:id="byNameBtn" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="76.0" prefWidth="165.0" text="Name" />
             <MFXButton fx:id="byAmountBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="583.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Amount" />
             <MFXButton fx:id="byTypeBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="490.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Type" />
+            <MFXButton fx:id="byDateBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="706.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Date" />
             <VBox alignment="CENTER">
                <children>
                   <MFXTextField fx:id="nameField" floatMode="BORDER" prefHeight="51.0" prefWidth="184.0">
@@ -35,7 +36,6 @@
                   </MFXTextField>
                </children>
             </VBox>
-            <MFXButton fx:id="findBtn" buttonType="RAISED" depthLevel="LEVEL5" disable="true" layoutX="675.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Find" />
          </children>
          <padding>
             <Insets left="10.0" top="10.0" />

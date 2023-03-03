@@ -4,14 +4,6 @@ public class Ledger {
     private int transactionId;
     private int sourceCustomerId;
 
-    public int getTransactionId() {
-        return transactionId;
-    }
-
-    public int getSourceCustomerId() {
-        return sourceCustomerId;
-    }
-
     private String transactionType;
 
     private double amount;
@@ -19,6 +11,14 @@ public class Ledger {
     private String description;
     private int destinationCustomerId;
     private String destinationName;
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public int getSourceCustomerId() {
+        return sourceCustomerId;
+    }
 
     public String getDestinationName() {
         return destinationName;

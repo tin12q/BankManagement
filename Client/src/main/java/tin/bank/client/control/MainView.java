@@ -35,18 +35,6 @@ public class MainView {
     @FXML
     private MFXButton historyBtn;
 
-    public MFXButton getW() {
-        return withdrawBtn;
-    }
-
-    public MFXButton geth() {
-        return historyBtn;
-    }
-
-    public MFXButton getT() {
-        return transferButton;
-    }
-
     @FXML
     private void initialize() {
         // DataHandle.getLedger();

@@ -28,9 +28,9 @@ public class History {
     private MFXButton byAmountBtn;
 
     @FXML
-    private MFXButton findBtn;
-    @FXML
     private MFXTextField nameField;
+    @FXML
+    private MFXButton byDateBtn;
 
     @FXML
     private void initialize() {
@@ -41,6 +41,7 @@ public class History {
         byNameBtn.setOnAction(event -> sortBy("Name"));
         byTypeBtn.setOnAction(event -> sortBy("Type"));
         byAmountBtn.setOnAction(event -> sortBy("Amount"));
+        byDateBtn.setOnAction(event -> sortBy("Date"));
         /*
          * findBtn.setOnAction(event -> {
          * // create new dialog have textfield to get name and find by database
@@ -73,12 +74,7 @@ public class History {
             DataHandle.findName(newValue);
             addToScene();
         });
-        findBtn.setOnAction(event -> {
-            gridPane.getChildren().clear();
-            DataHandle.ledgers.clear();
-            DataHandle.findName(nameField.getText());
-            addToScene();
-        });
+
         addToScene();
 
     }

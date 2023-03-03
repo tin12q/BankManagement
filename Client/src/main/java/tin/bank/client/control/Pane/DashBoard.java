@@ -12,8 +12,10 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 import tin.bank.client.model.DataHandle;
@@ -32,6 +34,8 @@ public class DashBoard {
     private Label id;
     @FXML
     private AnchorPane ac2;
+    @FXML
+    private HBox hb;
     @FXML
     private VBox vb;
 
@@ -57,8 +61,10 @@ public class DashBoard {
 
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
-        xAxis.setStyle("-fx-text-fill: #f4f5fc");
-        yAxis.setStyle("-fx-text-fill: #f4f5fc");
+
+        xAxis.setTickLabelFont(Font.font("System", FontWeight.BOLD, 20));
+        yAxis.setTickLabelFont(Font.font("System", FontWeight.BOLD, 20));
+
         // Set the labels for the axes
         xAxis.setLabel("Transaction Type");
         yAxis.setLabel("Total Amount");
@@ -106,10 +112,13 @@ public class DashBoard {
         barChart.setData(seriesList);
         barChart.setStyle("-fx-text-fill: #f4f5fc");
         barChart.setPrefSize(900, 600);
+        barChart.setStyle("-fx-background-color: #8ebbff");
+        barChart.setLegendVisible(false);
+
         // add bar chart to current pane
         // pane.getChildren().add(barChart);
         // vb.setVisible(false);
-        ac2.getChildren().add(barChart);
+        hb.getChildren().add(barChart);
 
     }
 
@@ -124,7 +133,6 @@ public class DashBoard {
 
         historyBtn.setText(label);
         historyBtn.setTextAlignment(TextAlignment.LEFT);
-        // historyBtn.setOnAction(e -> ex.geth().fire());
 
     }
 
@@ -141,7 +149,7 @@ public class DashBoard {
 
         transferBtn.setText(label);
         transferBtn.setTextAlignment(TextAlignment.LEFT);
-        // transferBtn.setOnAction(e -> ex.getT().fire());
+
     }
 
     private void getWithdraw() {
@@ -157,6 +165,6 @@ public class DashBoard {
 
         withdrawBtn.setText(label);
         withdrawBtn.setTextAlignment(TextAlignment.LEFT);
-        // withdrawBtn.setOnAction(e -> ex.getW().fire());
+
     }
 }

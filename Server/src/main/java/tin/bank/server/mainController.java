@@ -6,6 +6,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
@@ -14,10 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.util.converter.DoubleStringConverter;
 import tin.bank.server.model.Account;
 import tin.bank.server.model.DataHandle;
+import tin.bank.server.model.Ledger;
 
 public class mainController {
     // TODO: Feb 01 23
@@ -57,11 +60,17 @@ public class mainController {
     private TableColumn<Account, String> usernameCol;
     @FXML
     private TableColumn<Account, String> passwordCol;
+    @FXML
+    private AnchorPane ac2;
 
     @FXML
     private TextField findTf;
     @FXML
     private Button findBtn;
+    @FXML
+    private MFXButton exportBtn1;
+    @FXML
+    private TextField nameTf;
     @FXML
     private TableColumn<Account, Void> updateCol;
     private Button updateBtn;
@@ -182,7 +191,61 @@ public class mainController {
             }
         });
         // on edited row add a update button then update the row in the database
+        // Create TableView and columns
+        DataHandle.getLedger();
+        TableView<Ledger> table = new TableView<>();
+        TableColumn<Ledger, Integer> transactionIdCol = new TableColumn<>("Transaction ID");
+        TableColumn<Ledger, String> transactionTypeCol = new TableColumn<>("Transaction Type");
+        TableColumn<Ledger, Double> amountCol = new TableColumn<>("Amount");
+        TableColumn<Ledger, String> dateCol = new TableColumn<>("Date");
+        TableColumn<Ledger, String> descriptionCol = new TableColumn<>("Description");
+        TableColumn<Ledger, Integer> destCustomerIdCol = new TableColumn<>("Destination Customer ID");
+        TableColumn<Ledger, String> destNameCol = new TableColumn<>("Destination Name");
 
+        // Set cell value factories for each column
+        transactionIdCol.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
+        transactionTypeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        destCustomerIdCol.setCellValueFactory(new PropertyValueFactory<>("destinationCustomerId"));
+        destNameCol.setCellValueFactory(new PropertyValueFactory<>("destinationName"));
+
+        // Add columns to TableView and set items to ledgerList
+        table.getColumns().addAll(transactionIdCol, transactionTypeCol, amountCol, dateCol, descriptionCol,
+                destCustomerIdCol, destNameCol);
+        table.setItems(FXCollections.observableArrayList(DataHandle.ledgers));
+        ac2.getChildren().add(table);
+
+        table.setEditable(true);
+        // set table to 1483 x 869
+        table.setPrefSize(1483, 869);
+        table.toBack();
+        AnchorPane.setBottomAnchor(table, (double) 0);
+        AnchorPane.setTopAnchor(table, 50.0);
+        nameTf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                ObservableList<Ledger> ledgers2 = FXCollections
+                        .observableArrayList(DataHandle.getLedgerName(newValue));
+                table.setItems(ledgers2);
+            }
+        });
+        exportBtn1.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save file");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+            // Show the dialog and get the selected file
+            File file = fileChooser.showSaveDialog(exportBtn.getScene().getWindow());
+
+            if (file != null) {
+                System.out.println("Selected file: " + file.getAbsolutePath());
+                DataHandle.exportLedgerToExcel(DataHandle.ledgers, file.getAbsolutePath());
+                System.out.println("Done");
+                // Call your export function with the selected file path
+                // exportAccountsToExcel(accounts, file.getAbsolutePath());
+            }
+        });
     }
 
     // Create table to view all accounts

@@ -22,7 +22,7 @@ public class DataHandle {
     private static final String pss = "Abcd1234";
     private static final String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static List<Account> accounts = new ArrayList<>();
-    public static List<Ledger> ledgers;
+    public static List<Ledger> ledgers = new ArrayList<>();
     public static Account mainAccount;
     private static Connection conn;
 
@@ -67,6 +67,53 @@ public class DataHandle {
             }
             // expand column
             for (int i = 0; i < 11; i++) {
+                sheet.setColumnView(i, 30);
+                // change font size
+
+            }
+            // Write the workbook to the file
+            workbook.write();
+            workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void exportLedgerToExcel(List<Ledger> ledgers, String filename) {
+        try {
+            // Create a new Excel workbook and sheet
+            WritableWorkbook workbook = Workbook.createWorkbook(new File(filename));
+            WritableSheet sheet = workbook.createSheet("Ledgers", 0);
+            WritableFont font = new WritableFont(WritableFont.ARIAL, 18);
+            WritableCellFormat wf = new WritableCellFormat(font);
+            // Add column headings to the first row of the sheet
+            sheet.addCell(new Label(0, 0, "ID", wf));
+            sheet.addCell(new Label(1, 0, "From ", wf));
+            sheet.addCell(new Label(2, 0, "Type", wf));
+            sheet.addCell(new Label(3, 0, "Amount", wf));
+            sheet.addCell(new Label(4, 0, "Date", wf));
+            sheet.addCell(new Label(5, 0, "Description", wf));
+            sheet.addCell(new Label(6, 0, "To Id", wf));
+            sheet.addCell(new Label(7, 0, "To", wf));
+
+            // Add ledger data to the remaining rows of the sheet
+            int row = 1;
+            for (Ledger ledger : ledgers) {
+
+                sheet.addCell(new Label(0, row, Integer.toString(ledger.getTransactionId()), wf));
+                sheet.addCell(new Label(1, row, Integer.toString(ledger.getSourceCustomerId()), wf));
+                sheet.addCell(new Label(2, row, ledger.getTransactionType(), wf));
+                sheet.addCell(new Label(3, row, ledger.getAmount(), wf));
+                sheet.addCell(new Label(4, row, ledger.getTransactionDate().toString(), wf));
+                sheet.addCell(new Label(5, row, ledger.getDescription(), wf));
+                sheet.addCell(new Label(6, row, Integer.toString(ledger.getDestinationCustomerId()), wf));
+                sheet.addCell(new Label(7, row, ledger.getDestinationName(), wf));
+                row++;
+            }
+            // expand column
+            for (int i = 0; i <= 7; i++) {
                 sheet.setColumnView(i, 30);
                 // change font size
 
@@ -183,5 +230,76 @@ public class DataHandle {
                 e.printStackTrace();
             }
         }
+    }
+
+    // ledger
+    public static void getLedger() {
+        try {
+            connection();
+            String sql = "{CALL GetAllLedger()}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            // stmt.setString(1, mainAccount.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("AccountId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId, destinationName);
+                ledgers.add(ledger);
+                System.out.println(ledger.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static List<Ledger> getLedgerName(String name) {
+        List<Ledger> l2 = new ArrayList<>();
+        try {
+            connection();
+            String sql = "{CALL GetLedgerName(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int transactionId = rs.getInt("TransactionId");
+                int sourceCustomerId = rs.getInt("AccountId");
+                String transactionType = rs.getString("TransactionType");
+                Double amount = rs.getDouble("Amount");
+                String Date = rs.getDate("DateTime").toString();
+                String description = rs.getString("Description");
+                int destinationCustomerId = rs.getInt("DestinationAccountId");
+                String destinationName = rs.getString("DestinationName");
+                // process the customer information
+                Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
+                        destinationCustomerId, destinationName);
+                l2.add(ledger);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return l2;
     }
 }

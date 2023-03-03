@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import tin.bank.client.model.Account;
 import tin.bank.client.model.DataHandle;
@@ -31,6 +32,8 @@ public class Transfer {
 
     @FXML
     private MFXButton okBtn;
+    @FXML
+    private TextArea des;
 
     @FXML
     private void initialize() {
@@ -68,7 +71,7 @@ public class Transfer {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             dialog.showAndWait();
             if (dialog.getResult() == ButtonType.OK) {
-                DataHandle.transferMoney(DataHandle.mainAccount.getId(), destinationId, amount);
+                DataHandle.tranDes(DataHandle.mainAccount.getId(), destinationId, amount, des.getText());
                 amountTextfield.setText("Transfer success");
             } else {
                 amountTextfield.setText("Transfer failed");

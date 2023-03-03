@@ -177,6 +177,28 @@ public class DataHandle {
         }
     }
 
+    // transfer money with description
+    public static void tranDes(String sourceAccountId, String destinationAccountId, Double amount, String des) {
+        try {
+            connection();
+            String sql = "{CALL TransferDes(?, ?, ?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, sourceAccountId);
+            stmt.setString(2, destinationAccountId);
+            stmt.setDouble(3, amount);
+            stmt.setString(4, des);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("DataHandle.transferMoney()");
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     // get other account list
     public static void getCustomers() {
         try {
