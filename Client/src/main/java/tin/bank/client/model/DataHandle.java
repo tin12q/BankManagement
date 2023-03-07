@@ -2,6 +2,7 @@ package tin.bank.client.model;
 
 import java.sql.*;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class DataHandle {
@@ -70,7 +71,31 @@ public class DataHandle {
     }
 
     // get all accounts
-
+    //update password to hashed
+    public static void updatePass(){
+        try {
+            connection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Logins");
+            while (rs.next()) {
+                String username = rs.getString("Username");
+                //String password = rs.getString("Password");
+                String sql = "{CALL updatePass(?,?)}";
+                CallableStatement stmt2 = conn.prepareCall(sql);
+                stmt2.setString(1, username);
+                stmt2.setBytes(2, Decrypt.decrypt("abcd").getBytes());
+                stmt2.execute();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     // login check
     public static boolean loginCheck(String username, String password) {
         boolean isValid = false;
@@ -79,7 +104,7 @@ public class DataHandle {
             String sql = "{CALL CheckLogin(?, ?, ?)}";
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, username);
-            stmt.setString(2, password);
+            stmt.setString(2, Decrypt.decrypt(password));
             stmt.registerOutParameter(3, Types.BIT);
             stmt.execute();
 
@@ -96,6 +121,31 @@ public class DataHandle {
         }
         return isValid;
 
+    }
+    public static boolean checkLoginHashed(String username,String password){
+        boolean isValid = false;
+        try {
+            connection();
+            String sql = "{CALL getPass(?)} ";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                byte[] hashed = rs.getBytes("password");
+                //System.out.println("Hashed: " + new String(hashed));
+                isValid = Decrypt.checkPassword(password, new String(hashed));
+            }
+            return isValid;
+        } catch (Exception e) {
+            System.out.println("DataHandle.loginCheck()");
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return isValid;
     }
 
     public static void createUser(String fname, String lname, Date dob, String email, String phone, String address,
@@ -115,7 +165,7 @@ public class DataHandle {
             stmt.setString(8, state);
             stmt.setString(9, zip);
             stmt.setString(10, username);
-            stmt.setString(11, password);
+            stmt.setString(11, Decrypt.decrypt(password));
             stmt.setDouble(12, initialDeposit);
             stmt.executeUpdate();
         } catch (Exception e) {
@@ -157,14 +207,15 @@ public class DataHandle {
      * }
      */
     // money transfer
-    public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount) {
+    public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount,String des) {
         try {
             connection();
-            String sql = "{CALL TransferFunds(?, ?, ?)}";
+            String sql = "{CALL TransferDes(?, ?, ?,?)}";
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, sourceAccountId);
             stmt.setString(2, destinationAccountId);
             stmt.setDouble(3, amount);
+            stmt.setString(4, des);
             stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("DataHandle.transferMoney()");
@@ -318,7 +369,7 @@ public class DataHandle {
                 Ledger ledger = new Ledger(transactionId, sourceCustomerId, transactionType, amount, Date, description,
                         destinationCustomerId, destinationName);
                 ledgers.add(ledger);
-                System.out.println(ledger.toString());
+                //System.out.println(ledger.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();

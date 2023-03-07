@@ -72,7 +72,7 @@ public class LogInDialog {
     private void loadPage(String page, ActionEvent event) {
         try {
 
-            boolean logInCheck = DataHandle.loginCheck(usr.getText(), pwd.getText());
+            boolean logInCheck = DataHandle.checkLoginHashed(usr.getText(), pwd.getText());
             if (logInCheck) {
                 DataHandle.getMainAccount(usr.getText());
                 FXMLLoader loader = new FXMLLoader();
@@ -99,7 +99,8 @@ public class LogInDialog {
     private void enterLoadPage(String page, KeyEvent event) {
         try {
 
-            boolean logInCheck = DataHandle.loginCheck(usr.getText(), pwd.getText());
+            boolean logInCheck = DataHandle.checkLoginHashed(usr.getText(), pwd.getText());
+
             if (logInCheck) {
                 DataHandle.getMainAccount(usr.getText());
                 FXMLLoader loader = new FXMLLoader();

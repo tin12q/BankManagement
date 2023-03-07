@@ -51,10 +51,11 @@ public class DashBoard {
 
         id.setText("ID: " + DataHandle.mainAccount.getId());
 
-        DataHandle.getLedger();
+
+
         balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
         // historyBtn.setOnAction(event -> loadPane("History", event));
-        DataHandle.ledgers.clear();
+
         DataHandle.getLedger();
 
         getHistory();
@@ -88,7 +89,7 @@ public class DashBoard {
                 withdrawTotal += ledger.getAmountDouble();
             } else if (ledger.getType().equals(DEPOSIT_TYPE)) {
                 depositTotal += ledger.getAmountDouble();
-            } else if (ledger.getType().equals(TRANSFER_TYPE)) {
+            } else if (ledger.getType().equals("transfer")) {
                 transferTotal += ledger.getAmountDouble();
             }
         }
@@ -105,7 +106,7 @@ public class DashBoard {
 
         XYChart.Series<String, Number> transferSeries = new XYChart.Series<>();
         transferSeries.setName(TRANSFER_TYPE);
-        transferSeries.getData().add(new XYChart.Data<>(TRANSFER_TYPE, transferTotal));
+        transferSeries.getData().add(new XYChart.Data<>("Transfer", transferTotal));
 
         seriesList.add(transferSeries);
 

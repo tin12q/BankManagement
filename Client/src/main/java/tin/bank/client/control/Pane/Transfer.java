@@ -1,16 +1,14 @@
 package tin.bank.client.control.Pane;
 
 import java.util.LinkedList;
-import javafx.scene.control.ButtonType;
+
+import javafx.scene.control.*;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import tin.bank.client.model.Account;
 import tin.bank.client.model.DataHandle;
@@ -63,24 +61,39 @@ public class Transfer {
             // accountBox.getValue().getId(), amount);
             // create dialog to confirm
             String destinationId = idTf.getText();
-            Dialog<ButtonType> dialog = new Dialog<>();
+            Dialog<TextField> dialog = new Dialog<>();
             dialog.setTitle("Confirm");
             dialog.setHeaderText(
                     "Are you sure you want to transfer " + amount + " to " + DataHandle.getName(destinationId) + "?");
+            // add textfield to dialog
+            PasswordField textField = new PasswordField();
+            dialog.getDialogPane().setContent(textField);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             dialog.showAndWait();
-            if (dialog.getResult() == ButtonType.OK) {
-                DataHandle.tranDes(DataHandle.mainAccount.getId(), destinationId, amount, des.getText());
-                amountTextfield.setText("Transfer success");
-            } else {
+            // check password
+            if(!DataHandle.checkLoginHashed(DataHandle.mainAccount.getUsername(), textField.getText())) {
                 amountTextfield.setText("Transfer failed");
+                Dialog<ButtonType> dialog1 = new Dialog<>();
+                dialog1.setTitle("Confirm");
+                dialog1.setHeaderText("Wrong password. Please try again");
+                dialog1.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                dialog1.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                dialog1.showAndWait();
+            }
+            else {
+                // transfer money
+                DataHandle.transferMoney(DataHandle.mainAccount.getId(), destinationId, amount, des.getText());
+                // Show the result
+                amountTextfield.setText("Transfer success");
+                // Update the current account balance
+                DataHandle.getMainAccount(DataHandle.mainAccount.getUsername());
+                currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
             }
             // Show the result
-
+            // amountTextfield.setText("Transfer success");
             // Update the current account balance
-            DataHandle.getMainAccount(DataHandle.mainAccount.getUsername());
-            currentBtn.setText(DataHandle.mainAccount.getBalance().toString());
+
         }
     }
 }

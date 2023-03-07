@@ -37,16 +37,6 @@ public class Ledger {
 
     }
 
-    public Ledger(int transactionId, int sourceCustomerId, String transactionType, double amount,
-            String transactionDate, int destinationCustomerId, String destinationName) {
-        this.transactionId = transactionId;
-        this.sourceCustomerId = sourceCustomerId;
-        this.transactionType = transactionType;
-        this.amount = amount;
-        this.transactionDate = transactionDate;
-        this.destinationCustomerId = destinationCustomerId;
-        this.destinationName = destinationName;
-    }
 
     public int getDestinationCustomerId() {
         return destinationCustomerId;
