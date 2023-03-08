@@ -2,7 +2,6 @@ package tin.bank.client.model;
 
 import java.sql.*;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public class DataHandle {
@@ -83,7 +82,7 @@ public class DataHandle {
                 String sql = "{CALL updatePass(?,?)}";
                 CallableStatement stmt2 = conn.prepareCall(sql);
                 stmt2.setString(1, username);
-                stmt2.setBytes(2, Decrypt.decrypt("abcd").getBytes());
+                stmt2.setBytes(2, Encrypt.encrypt("abcd").getBytes());
                 stmt2.execute();
             }
         } catch (Exception e) {
@@ -104,7 +103,7 @@ public class DataHandle {
             String sql = "{CALL CheckLogin(?, ?, ?)}";
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, username);
-            stmt.setString(2, Decrypt.decrypt(password));
+            stmt.setString(2, Encrypt.encrypt(password));
             stmt.registerOutParameter(3, Types.BIT);
             stmt.execute();
 
@@ -133,7 +132,7 @@ public class DataHandle {
             if(rs.next()){
                 byte[] hashed = rs.getBytes("password");
                 //System.out.println("Hashed: " + new String(hashed));
-                isValid = Decrypt.checkPassword(password, new String(hashed));
+                isValid = Encrypt.checkPassword(password, new String(hashed));
             }
             return isValid;
         } catch (Exception e) {
@@ -165,7 +164,7 @@ public class DataHandle {
             stmt.setString(8, state);
             stmt.setString(9, zip);
             stmt.setString(10, username);
-            stmt.setString(11, Decrypt.decrypt(password));
+            stmt.setString(11, Encrypt.encrypt(password));
             stmt.setDouble(12, initialDeposit);
             stmt.executeUpdate();
         } catch (Exception e) {
@@ -346,6 +345,8 @@ public class DataHandle {
 
     public static void resetList() {
         accounts.clear();
+        ledgers.clear();
+
     }
 
     public static void getLedger() {

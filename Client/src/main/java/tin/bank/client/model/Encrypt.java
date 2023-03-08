@@ -2,9 +2,9 @@ package tin.bank.client.model;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class Decrypt{
+public class Encrypt {
 
-    public static String decrypt(String password){
+    public static String encrypt(String password){
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         return hashed;
     }
