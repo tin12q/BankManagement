@@ -2,19 +2,13 @@ package tin.bank.client.control.Pane;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import io.github.palexdev.materialfx.enums.FloatMode;
 import javafx.fxml.FXML;
-
 import javafx.geometry.Insets;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import tin.bank.client.model.DataHandle;
-
 import tin.bank.client.model.Ledger;
 
 public class History {
@@ -59,7 +53,7 @@ public class History {
          * }
          * return null;
          * });
-         * 
+         *
          * dialog.showAndWait().ifPresent(name -> {
          * gridPane.getChildren().clear();
          * DataHandle.ledgers.clear();

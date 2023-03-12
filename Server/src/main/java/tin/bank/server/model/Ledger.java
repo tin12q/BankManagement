@@ -10,20 +10,8 @@ public class Ledger {
     private int destinationCustomerId;
     private String destinationName;
 
-    public int getTransactionId() {
-        return transactionId;
-    }
-
-    public int getSourceCustomerId() {
-        return sourceCustomerId;
-    }
-
-    public String getDestinationName() {
-        return destinationName;
-    }
-
     public Ledger(int transactionId, int sourceCustomerId, String transactionType, double amount,
-            String transactionDate, String description, int destinationCustomerId, String destinationName) {
+                  String transactionDate, String description, int destinationCustomerId, String destinationName) {
         this.transactionId = transactionId;
         this.sourceCustomerId = sourceCustomerId;
         this.transactionType = transactionType;
@@ -36,7 +24,7 @@ public class Ledger {
     }
 
     public Ledger(int transactionId, int sourceCustomerId, String transactionType, double amount,
-            String transactionDate, int destinationCustomerId, String destinationName) {
+                  String transactionDate, int destinationCustomerId, String destinationName) {
         this.transactionId = transactionId;
         this.sourceCustomerId = sourceCustomerId;
         this.transactionType = transactionType;
@@ -44,6 +32,18 @@ public class Ledger {
         this.transactionDate = transactionDate;
         this.destinationCustomerId = destinationCustomerId;
         this.destinationName = destinationName;
+    }
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public int getSourceCustomerId() {
+        return sourceCustomerId;
+    }
+
+    public String getDestinationName() {
+        return destinationName;
     }
 
     public int getDestinationCustomerId() {

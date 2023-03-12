@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #24293E;"
+            xmlns="http://javafx.com/javafx/19" fx:controller="tin.bank.client.control.Pane.History">
+    <children>
+        <MFXScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0"
+                       style="-fx-background-color: #24293E;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <content>
+                <GridPane fx:id="gridPane" alignment="CENTER" hgap="20.0" prefHeight="900.0" prefWidth="1200.0"
+                          style="-fx-background-color: #24293E;" stylesheets="@../css/box.css" vgap="20.0"/>
 
-<AnchorPane style="-fx-background-color: #24293E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tin.bank.client.control.Pane.History">
-   <children>
-      <MFXScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #24293E;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-         <content>
-            <GridPane fx:id="gridPane" alignment="CENTER" hgap="20.0" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #24293E;" stylesheets="@../css/box.css" vgap="20.0" />
-            
-               </content>
-         <padding>
-            <Insets left="50.0" />
-         </padding>
-      </MFXScrollPane>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" stylesheets="@../css/round.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <MFXButton fx:id="byNameBtn" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="76.0" prefWidth="165.0" text="Name" />
-            <MFXButton fx:id="byAmountBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="583.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Amount" />
-            <MFXButton fx:id="byTypeBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="490.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Type" />
-            <MFXButton fx:id="byDateBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="706.0" layoutY="20.0" prefHeight="76.0" prefWidth="165.0" text="Date" />
-            <VBox alignment="CENTER">
-               <children>
-                  <MFXTextField fx:id="nameField" floatMode="BORDER" prefHeight="51.0" prefWidth="184.0">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </MFXTextField>
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets left="10.0" top="10.0" />
-         </padding>
-      </HBox>
-   </children>
+            </content>
+            <padding>
+                <Insets left="50.0"/>
+            </padding>
+        </MFXScrollPane>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0"
+              stylesheets="@../css/round.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+            <children>
+                <MFXButton fx:id="byNameBtn" buttonType="RAISED" depthLevel="LEVEL5" prefHeight="76.0" prefWidth="165.0"
+                           text="Name"/>
+                <MFXButton fx:id="byAmountBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="583.0" layoutY="20.0"
+                           prefHeight="76.0" prefWidth="165.0" text="Amount"/>
+                <MFXButton fx:id="byTypeBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="490.0" layoutY="20.0"
+                           prefHeight="76.0" prefWidth="165.0" text="Type"/>
+                <MFXButton fx:id="byDateBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="706.0" layoutY="20.0"
+                           prefHeight="76.0" prefWidth="165.0" text="Date"/>
+                <VBox alignment="CENTER">
+                    <children>
+                        <MFXTextField fx:id="nameField" floatMode="BORDER" prefHeight="51.0" prefWidth="184.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </MFXTextField>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets left="10.0" top="10.0"/>
+            </padding>
+        </HBox>
+    </children>
 </AnchorPane>

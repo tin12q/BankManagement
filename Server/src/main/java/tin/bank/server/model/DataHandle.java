@@ -1,18 +1,13 @@
 package tin.bank.server.model;
 
+import jxl.Workbook;
+import jxl.write.*;
+
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.File;
-import java.util.List;
-import jxl.Workbook;
-import jxl.write.Label;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
 
 public class DataHandle {
     // mssql connection

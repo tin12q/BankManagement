@@ -1,7 +1,6 @@
 package tin.bank.client.model;
 
 import java.sql.*;
-
 import java.util.LinkedList;
 
 public class DataHandle {
@@ -71,7 +70,7 @@ public class DataHandle {
 
     // get all accounts
     //update password to hashed
-    public static void updatePass(){
+    public static void updatePass() {
         try {
             connection();
             Statement stmt = conn.createStatement();
@@ -95,6 +94,7 @@ public class DataHandle {
             }
         }
     }
+
     // login check
     public static boolean loginCheck(String username, String password) {
         boolean isValid = false;
@@ -121,7 +121,8 @@ public class DataHandle {
         return isValid;
 
     }
-    public static boolean checkLoginHashed(String username,String password){
+
+    public static boolean checkLoginHashed(String username, String password) {
         boolean isValid = false;
         try {
             connection();
@@ -129,7 +130,7 @@ public class DataHandle {
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 byte[] hashed = rs.getBytes("password");
                 //System.out.println("Hashed: " + new String(hashed));
                 isValid = Encrypt.checkPassword(password, new String(hashed));
@@ -148,8 +149,8 @@ public class DataHandle {
     }
 
     public static void createUser(String fname, String lname, Date dob, String email, String phone, String address,
-            String city,
-            String state, String zip, String username, String password, Double initialDeposit) {
+                                  String city,
+                                  String state, String zip, String username, String password, Double initialDeposit) {
         try {
             connection();
             String sql = "{CALL CreateCustomerAccount(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -187,7 +188,7 @@ public class DataHandle {
      * String sql = "{CALL GetCustomerCount()}";
      * CallableStatement stmt = conn.prepareCall(sql);
      * ResultSet rs = stmt.executeQuery();
-     * 
+     *
      * if (rs.next()) {
      * int customerCount = rs.getInt("CustomerCount");
      * // process the customer count
@@ -206,7 +207,7 @@ public class DataHandle {
      * }
      */
     // money transfer
-    public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount,String des) {
+    public static void transferMoney(String sourceAccountId, String destinationAccountId, Double amount, String des) {
         try {
             connection();
             String sql = "{CALL TransferDes(?, ?, ?,?)}";
@@ -493,7 +494,7 @@ public class DataHandle {
     }
 
     public static void updateCustomer(String id, String fname, String lname, String email, String phone, String address,
-            String city, String state, String zip, Date dob) {
+                                      String city, String state, String zip, Date dob) {
         try {
             connection();
             String sql = "{CALL UpdateCustomer(?,?,?,?,?,?,?,?,?,?)}";

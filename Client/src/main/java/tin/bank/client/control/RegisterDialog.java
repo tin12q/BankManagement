@@ -1,10 +1,5 @@
 package tin.bank.client.control;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
@@ -12,13 +7,16 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tin.bank.client.model.DataHandle;
 
-import javafx.scene.Node;
+import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class RegisterDialog {
     // private String pattern = "yyyy-MM-dd";
@@ -97,9 +95,7 @@ public class RegisterDialog {
                 stage.show();
             }
 
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
