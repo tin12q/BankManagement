@@ -1,25 +1,27 @@
 .transaction-box {
-  -fx-background-color: #2f3954; /* Sky blue color */
-  -fx-background-radius: 5;
-  -fx-border-width: 2;
-  -fx-border-radius: 5;
-  -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-color: #2f3954; /* Sky blue color */
+    -fx-background-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-insets: 0, 0 0 1 0;
 }
 
 .label {
-  -fx-font-size: 22px;
-  -fx-text-fill: #2f3954;
+    -fx-font-size: 22px;
+    -fx-text-fill: #2f3954;
 }
+
 .transaction-destination {
-  -fx-font-size: 32px;
-  -fx-text-fill: #f4f5fc;
-  -fx-font-weight: bold;
+    -fx-font-size: 32px;
+    -fx-text-fill: #f4f5fc;
+    -fx-font-weight: bold;
 }
+
 .transaction-amount {
-  -fx-background-color: #8ebbff; /* Sky blue color */
-  -fx-background-radius: 5;
-  -fx-border-width: 2;
-  -fx-border-radius: 5;
-  -fx-background-insets: 0, 0 0 1 0;
-  -fx-text-fill: #2f3954;
+    -fx-background-color: #8ebbff; /* Sky blue color */
+    -fx-background-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-fill: #2f3954;
 }

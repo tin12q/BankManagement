@@ -1,16 +1,11 @@
 package tin.bank.client.control.Pane;
 
-import java.util.LinkedList;
-
-import javafx.scene.control.*;
-
 import io.github.palexdev.materialfx.controls.MFXButton;
-
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import tin.bank.client.model.Account;
 import tin.bank.client.model.DataHandle;
 
 public class Transfer {
@@ -42,16 +37,8 @@ public class Transfer {
         okBtn.setOnAction(this::handleTransfer);
     }
 
-    // @FXML
-    // NOTE: I will improve this method later
-    // TODO: Jan 07 2023
     private void handleTransfer(ActionEvent event) {
-        // Get the selected account from the ComboBox
-        // Account selectedAccount = accountBox.getSelectionModel().getSelectedItem();
 
-        // Continue with the rest of the transfer process...
-        // Get the amount from the textfield
-        // TODO: Add regex
         Double amount = Double.parseDouble(amountTextfield.getText());
         if (amount <= 0) {
             amountTextfield.setText("Transfer failed");
@@ -72,7 +59,7 @@ public class Transfer {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             dialog.showAndWait();
             // check password
-            if(!DataHandle.checkLoginHashed(DataHandle.mainAccount.getUsername(), textField.getText())) {
+            if (!DataHandle.checkLoginHashed(DataHandle.mainAccount.getUsername(), textField.getText())) {
                 amountTextfield.setText("Transfer failed");
                 Dialog<ButtonType> dialog1 = new Dialog<>();
                 dialog1.setTitle("Confirm");
@@ -80,8 +67,7 @@ public class Transfer {
                 dialog1.getDialogPane().getButtonTypes().add(ButtonType.OK);
                 dialog1.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
                 dialog1.showAndWait();
-            }
-            else {
+            } else {
                 // transfer money
                 DataHandle.transferMoney(DataHandle.mainAccount.getId(), destinationId, amount, des.getText());
                 // Show the result

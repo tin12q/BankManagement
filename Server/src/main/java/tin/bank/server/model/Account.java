@@ -6,28 +6,6 @@ public class Account {
     private String id;
     private String fname;
     private String lname;
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public String getLname() {
-
-        return lname;
-    }
-
     private Double balance;
     private String email;
     private String phone;
@@ -36,72 +14,10 @@ public class Account {
     private String city;
     private String state;
     private String zipCode;
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setStringDob(String dob) {
-        // format string to date
-
-        this.DOB = Date.valueOf(dob);
-
-    }
-
-    public void setDOB(Date dOB) {
-        DOB = dOB;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public Date getDOB() {
-        return DOB;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
+    private String username;
+    private String password;
     public Account(String id, String fname, String lname, Double balance, String email, String phone, String address,
-            Date dateOfBirth, String city, String state, String zipCode, String username, String password) {
+                   Date dateOfBirth, String city, String state, String zipCode, String username, String password) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -116,19 +32,94 @@ public class Account {
         this.username = username;
         this.password = password;
     }
-
     public Account(String id, String fname, String lname, String username) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.username = username;
     }
-
-    private String username;
-    private String password;
-
-    public void setUsername(String username) {
+    public Account(String username) {
         this.username = username;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public void setStringDob(String dob) {
+        // format string to date
+
+        this.DOB = Date.valueOf(dob);
+
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(Date dOB) {
+        DOB = dOB;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getPassword() {
@@ -143,12 +134,16 @@ public class Account {
         return username;
     }
 
-    public Account(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Double getBalance() {

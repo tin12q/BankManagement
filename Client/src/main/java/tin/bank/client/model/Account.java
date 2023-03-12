@@ -6,15 +6,6 @@ public class Account {
     private String id;
     private String fname;
     private String lname;
-
-    public String getFname() {
-        return fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
     private Double balance;
     private String email;
     private String phone;
@@ -23,6 +14,41 @@ public class Account {
     private String city;
     private String state;
     private String zipCode;
+    private String username;
+    public Account(String id, String fname, String lname, Double balance, String email, String phone, String address,
+                   Date dateOfBirth, String city, String state, String zipCode, String username) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.balance = balance;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.DOB = dateOfBirth;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.username = username;
+    }
+
+    public Account(String id, String fname, String lname, String username) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.username = username;
+    }
+
+    public Account(String username) {
+        this.username = username;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
 
     public String getEmail() {
         return email;
@@ -52,37 +78,8 @@ public class Account {
         return zipCode;
     }
 
-    public Account(String id, String fname, String lname, Double balance, String email, String phone, String address,
-            Date dateOfBirth, String city, String state, String zipCode, String username) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.balance = balance;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.DOB = dateOfBirth;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.username = username;
-    }
-
-    public Account(String id, String fname, String lname, String username) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.username = username;
-    }
-
-    private String username;
-
     public String getUsername() {
         return username;
-    }
-
-    public Account(String username) {
-        this.username = username;
     }
 
     public String getId() {

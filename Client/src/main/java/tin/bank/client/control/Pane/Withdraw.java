@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderRepeat;
 import tin.bank.client.model.DataHandle;
 
 public class Withdraw {
@@ -60,8 +58,7 @@ public class Withdraw {
                 dialog1.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
                 dialog1.showAndWait();
 
-            }
-            else{
+            } else {
                 DataHandle.withdrawMoney(DataHandle.mainAccount.getId(), amountDouble);
                 DataHandle.getMainAccount(DataHandle.mainAccount.getUsername());
                 currentBtn.setText(DataHandle.mainAccount.getBalance().toString());

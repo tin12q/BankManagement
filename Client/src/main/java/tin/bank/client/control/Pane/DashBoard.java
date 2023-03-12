@@ -1,7 +1,5 @@
 package tin.bank.client.control.Pane;
 
-import java.util.List;
-
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +15,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-
 import tin.bank.client.model.DataHandle;
 import tin.bank.client.model.Ledger;
 
+import java.util.List;
+
 public class DashBoard {
+    private static final String WITHDRAW_TYPE = "Withdraw";
+    private static final String DEPOSIT_TYPE = "Deposit";
+    private static final String TRANSFER_TYPE = "transfer";
     @FXML
     private MFXButton balanceBtn;
     @FXML
@@ -39,10 +41,6 @@ public class DashBoard {
     @FXML
     private VBox vb;
 
-    private static final String WITHDRAW_TYPE = "Withdraw";
-    private static final String DEPOSIT_TYPE = "Deposit";
-    private static final String TRANSFER_TYPE = "transfer";
-
     @FXML
     private void initialize() {
         id.setWrapText(true);
@@ -50,7 +48,6 @@ public class DashBoard {
         id.setTextAlignment(TextAlignment.CENTER);
 
         id.setText("ID: " + DataHandle.mainAccount.getId());
-
 
 
         balanceBtn.setText(DataHandle.mainAccount.getBalance().toString());
